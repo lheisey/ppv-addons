@@ -1,0 +1,146 @@
+<?php
+
+/**
+ * The public-facing functionality of the plugin.
+ *
+ * @link       http://picturesquephotoviews.com/
+ * @since      1.0.0
+ *
+ * @package    Ppv_Addons
+ * @subpackage Ppv_Addons/public
+ */
+
+/**
+ * The public-facing functionality of the plugin.
+ *
+ * Defines the plugin name, version, and two examples hooks for how to
+ * enqueue the public-facing stylesheet and JavaScript.
+ *
+ * @package    Ppv_Addons
+ * @subpackage Ppv_Addons/public
+ * @author     Loren Heisey <imwsite@cox.net>
+ */
+class Ppv_Addons_Public {
+
+	/**
+	 * The ID of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $plugin_name    The ID of this plugin.
+	 */
+	private $plugin_name;
+
+	/**
+	 * The version of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $version    The current version of this plugin.
+	 */
+	private $version;
+
+	/**
+	 * Initialize the class and set its properties.
+	 *
+	 * @since    1.0.0
+	 * @param      string    $plugin_name       The name of the plugin.
+	 * @param      string    $version    The version of this plugin.
+	 */
+	public function __construct( $plugin_name, $version ) {
+
+		$this->plugin_name = $plugin_name;
+		$this->version = $version;
+
+	}
+
+	/**
+	 * Register the stylesheets for the public-facing side of the site.
+	 *
+	 * @since    1.0.0
+	 */
+	public function enqueue_styles() {
+
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ppv-addons-public.css', array(), $this->version, 'all' );
+
+	}
+
+	/**
+	 * Register the JavaScript for the public-facing side of the site.
+	 *
+	 * @since    1.0.0
+	 */
+	public function enqueue_scripts() {
+
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/ppv-addons-public.js', array( 'jquery' ), $this->version, false );
+
+	}
+    
+    /**
+     * List posts by date.
+     *
+     * @since 1.0.0
+     *
+     * @param array  $atts
+     * @return string HTML output
+     */
+    public function ppv_Posts_By_Date( $atts ) {
+        $atts = shortcode_atts (
+        array( 
+            'posts_per_page' => 24,
+            'image_size' => 'thumbnail',
+            'show_image' => 'yes',
+            'order' => 'DESC',
+            'default_image' => 'ppv-default.jpg',
+        ), $atts, 'posts-by-date' );
+        
+        $posts_per_page = intval( $atts['posts_per_page'] );
+        $image_size = sanitize_text_field( $atts['image_size'] );
+        $show_image = sanitize_text_field( $atts['show_image'] );
+        $order = sanitize_key( $atts['order'] );
+        $default_image = sanitize_file_name( $atts['default_image'] );
+        
+        $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+        $args = array( 
+            'post_type' => 'post',
+            'posts_per_page' => $posts_per_page,
+            'paged' => $paged,
+            'order' => $order
+        );
+        $the_query = new WP_Query( $args );
+
+        if ( $the_query->have_posts() ) :
+        $output = '<div class="ppv-listing ppv-bydate">' . "\n";
+        while ( $the_query->have_posts() ) : $the_query->the_post();
+                if ( $show_image == 'yes') {
+                    $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
+                    $output .= ppv_Media_Object( $feature_image );
+                } else {
+                    $output .= ppv_Archive_List();
+                }
+
+            endwhile;
+            $output .= "</div>" . "\n";
+            $output .= ppv_Pagination( $the_query ); 
+            wp_reset_postdata();	
+
+        else:
+            $output .= "<h2>Sorry, no posts were found!</h2>";
+        endif;
+        
+        return $output;
+    }
+
+	/**
+	 * Registers all shortcodes at once
+	 *
+	 * @return [type] [description]
+	 */
+	public function register_shortcodes() {
+
+		add_shortcode( 'posts-by-date', array( $this, 'ppv_Posts_By_Date' ) );
+
+
+	}
+    
+}
