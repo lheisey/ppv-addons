@@ -2,7 +2,6 @@
  * All of the CSS for the public-facing functionality.
  */
 
-
 /*  plugin : wp-pagenavi
 /* ------------------------------------ */
 .wp-pagenavi span {
@@ -59,5 +58,13 @@
 /* ------------------------------------ */
 .ppv-list__body {
   margin: 0 4px 4px 4px;
+}
+
+/*  Posts listed by categories
+/* ------------------------------------ */
+.ppv-category-header {
+  font-size: 28px;
+  letter-spacing: -0.5px;
+  margin: 10px 0 4px 0;
 }
 

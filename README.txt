@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== PPV Addons ===
 Contributors: lheisey
 Tags: shortcode, posts, display, list, chronological
 Requires at least: 3.0.1
@@ -22,6 +22,13 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
     * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     * default_image (default ppv-default.jpg) - Image to display for posts that do not have a feature image set.
 
+* posts-by-categories - Displays all categories and posts in each. Can show or not show featured images. Shortcode options:
+    * image_size [default thumbnail] - Set WordPress image size for display of featured image.
+    * show_image [default yes] - Whether to display post featured image with the link to post.
+    * orderby [default name] - Sort order to display posts.
+    * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
+    * default_image (default ppv-default.jpg) - Image to display for posts that do not have a feature image set.
+
 == Installation ==
 
 1. Upload ppv-addons.zip to plugins via WordPress admin panel or upload unzipped folder to the `/wp-content/plugins/` folder.
@@ -34,7 +41,15 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
 
 The image to be displayed for posts that do not have a feature image set should be placed in the directory wp-content\plugins\ppv-addons\public\images. Set the default_image option in the shortcode to the filename of the image.
 
+== Credits ==
+
+* WordPress Plugin Boilerplate https://github.com/DevinVinson/WordPress-Plugin-Boilerplate was used as the starting point for this plugin.
+
 == Changelog ==
+
+= 1.0.1 =
+* Added posts-by-categories shortcode.
+* Changed PLUGIN_NAME_VERSION to PPV_ADDONS_VERSION.
 
 = 1.0 =
 * Initial release.

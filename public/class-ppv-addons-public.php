@@ -61,9 +61,9 @@ class Ppv_Addons_Public {
 	 */
 	public function enqueue_styles() {
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ppv-addons-public.css', array(), $this->version, 'all' );
-
-	}
+	wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ppv-addons-public.css', array(), $this->version, 'all' );
+	
+    }
 
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
@@ -130,7 +130,87 @@ class Ppv_Addons_Public {
         
         return $output;
     }
+    
+    /**
+     * List posts by categories.
+     *
+     * @since 1.0.1
+     *
+     * @param array  $atts
+     * @return string HTML output
+     */
+    public function ppv_Posts_By_Categories( $atts ) {
+        $atts = shortcode_atts (
+        array( 
+            'image_size' => 'thumbnail',
+            'show_image' => 'yes',
+            'orderby' => 'name',
+            'order' => 'ASC',
+            'default_image' => 'ppv-default.jpg',
+        ), $atts, 'posts-by-date' );
+        
+        $image_size = sanitize_text_field( $atts['image_size'] );
+        $show_image = sanitize_text_field( $atts['show_image'] );
+        $orderby = sanitize_key( $atts['orderby'] );
+        $order = sanitize_key( $atts['order'] );
+        $default_image = sanitize_file_name( $atts['default_image'] );
+        
+        global $ppv_category;  //for accessing categories from filters in child themes
+        
+        //get all categories then display all posts in each term
+        $taxonomy = 'category';
+        $param_type = 'category__in';
+        $term_args=array(
+            'orderby' => $orderby,
+            'order' => $order
+        );
+        $terms = get_terms($taxonomy,$term_args);
+        $output = '';
+        if ($terms) {
+            $output .= '<div class="ppv-listing ppv-bycategory">' . "\n";
+            foreach( $terms as $term ) {
+                $args=array(
+                  "$param_type" => array($term->term_id),
+                  'post_type' => 'post',
+                  'post_status' => 'publish',
+                  'posts_per_page' => -1,
+                  'ignore_sticky_posts' => 1
+                  );
+                $the_query = null;
+                $the_query = new WP_Query($args);     
+                if ( $the_query->have_posts() ) {
+                    $ppv_category = $term->name;
+                    $output .= '<div class="ppv-category-section">' . "\n";
+                    /**
+                     * Filter markup for category header.
+                     * Use global $ppv_category to display category
+                     *
+                     * @since 1.0.1
+                     *
+                     * @param string HTML output
+                     */
+                    $output .= apply_filters('ppv_category_header_filter', '<div class="ppv-category-header">' . $ppv_category . '</div>' . "\n");
+                        while ( $the_query->have_posts() ) : $the_query->the_post();
+                            if ( $show_image == 'yes') {
+                                $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
+                                $output .= ppv_Media_Object( $feature_image );
+                            } else {
+                                $output .= ppv_Archive_List();
+                            }
 
+                        endwhile;
+                    $output .= "</div><!-- .ppv-category-section -->" . "\n";
+                }
+            }
+            $output .= "</div><!-- .ppv-listing -->" . "\n";
+        } else {
+          $output .= "<h2>Sorry, no posts were found!</h2>";
+        }
+
+        wp_reset_postdata();
+        return $output;
+    }
+    
 	/**
 	 * Registers all shortcodes at once
 	 *
@@ -139,6 +219,7 @@ class Ppv_Addons_Public {
 	public function register_shortcodes() {
 
 		add_shortcode( 'posts-by-date', array( $this, 'ppv_Posts_By_Date' ) );
+        add_shortcode( 'posts-by-categories', array( $this, 'ppv_Posts_By_Categories' ) );
 
 
 	}

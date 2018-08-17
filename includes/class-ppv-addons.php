@@ -67,8 +67,8 @@ class Ppv_Addons {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'PLUGIN_NAME_VERSION' ) ) {
-			$this->version = PLUGIN_NAME_VERSION;
+		if ( defined( 'PPV_ADDONS_VERSION' ) ) {
+			$this->version = PPV_ADDONS_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
