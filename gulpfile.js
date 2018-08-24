@@ -2,6 +2,37 @@
 'use strict';
 var gulp = require('gulp');
 var readme = require('gulp-readme-to-markdown');
+var sass = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer');
+
+var autoprefixerOptions = {
+    browsers: [
+        "Android 2.3",
+        "Android >= 4",
+        "Chrome >= 20",
+        "Firefox >= 24",
+        "Explorer >= 9",
+        "iOS >= 6",
+        "Opera >= 12",
+        "Safari >= 6"
+    ]
+};
+
+var sassOptions = {
+    precision: 8,
+    errLogToConsole: true,
+    outputStyle: 'expanded'
+};
+
+var SOURCEPATHS = {
+    sassAdminSource : 'admin/scss/*.scss',
+    sassPublicSource : 'public/scss/*.scss'
+};
+
+var DESTINATIONPATHS = {
+    cssAdminDestination: 'admin/css',
+    cssPublicDestination: 'public/css'
+};
 
 /**
 * Convert WordPress readme.txt to github readme.md
@@ -14,4 +45,15 @@ gulp.task('readme', function () {
         .pipe(gulp.dest('.'));
 });
 
-gulp.task('default', ['readme']);
+
+/**
+* Build public styles
+*/
+gulp.task('publicstyles', function () {
+    return gulp.src(SOURCEPATHS.sassPublicSource)
+        .pipe(autoprefixer(autoprefixerOptions))
+        .pipe(sass(sassOptions).on('error', sass.logError))
+        .pipe(gulp.dest(DESTINATIONPATHS.cssPublicDestination));
+});
+
+gulp.task('default', ['readme', 'publicstyles']);
