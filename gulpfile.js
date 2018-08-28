@@ -3,6 +3,8 @@
 var gulp = require('gulp');
 var readme = require('gulp-readme-to-markdown');
 var sass = require('gulp-sass');
+var cleanCSS = require('gulp-clean-css');
+var rename = require('gulp-rename');
 var autoprefixer = require('gulp-autoprefixer');
 
 var autoprefixerOptions = {
@@ -53,6 +55,9 @@ gulp.task('publicstyles', function () {
     return gulp.src(SOURCEPATHS.sassPublicSource)
         .pipe(autoprefixer(autoprefixerOptions))
         .pipe(sass(sassOptions).on('error', sass.logError))
+        .pipe(gulp.dest(DESTINATIONPATHS.cssPublicDestination))
+        .pipe(cleanCSS({compatibility: 'ie9'}))
+        .pipe(rename({ extname: '.min.css' }))
         .pipe(gulp.dest(DESTINATIONPATHS.cssPublicDestination));
 });
 
