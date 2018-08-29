@@ -81,3 +81,9 @@ h1:hover {
   -o-transition: color 1s ease;
   transition: color 1s ease;
 }
+
+/*  Browsersync check
+/* ------------------------------------ */
+/*.ppv-media__body  a {
+    color: red;
+}*/

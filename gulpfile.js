@@ -6,6 +6,10 @@ var sass = require('gulp-sass');
 var cleanCSS = require('gulp-clean-css');
 var rename = require('gulp-rename');
 var autoprefixer = require('gulp-autoprefixer');
+var browserSync = require('browser-sync');
+
+var reload = browserSync.reload; // For manual reload
+var projectURL = 'localhost/wordpress';
 
 var autoprefixerOptions = {
     browsers: [
@@ -36,6 +40,11 @@ var DESTINATIONPATHS = {
     cssPublicDestination: 'public/css'
 };
 
+var watchPHPFiles =  [
+    '**/*.php',
+    '!node_modules/**/*'
+];
+
 /**
 * Convert WordPress readme.txt to github readme.md
 */
@@ -47,6 +56,17 @@ gulp.task('readme', function () {
         .pipe(gulp.dest('.'));
 });
 
+/**
+* Live reloads and CSS injections
+*/
+gulp.task('browser-sync', function () {
+    browserSync.init({
+        notify: false,
+        open: true,
+        proxy: projectURL,
+        injectChanges: true
+    });
+});
 
 /**
 * Build public styles
@@ -56,9 +76,17 @@ gulp.task('publicstyles', function () {
         .pipe(autoprefixer(autoprefixerOptions))
         .pipe(sass(sassOptions).on('error', sass.logError))
         .pipe(gulp.dest(DESTINATIONPATHS.cssPublicDestination))
+        .pipe(browserSync.stream()) // Reloads css if enqueued
         .pipe(cleanCSS({compatibility: 'ie9'}))
         .pipe(rename({ extname: '.min.css' }))
-        .pipe(gulp.dest(DESTINATIONPATHS.cssPublicDestination));
+        .pipe(gulp.dest(DESTINATIONPATHS.cssPublicDestination))
+        .pipe(browserSync.stream()); // Reloads min.css if enqueued
 });
 
-gulp.task('default', ['readme', 'publicstyles']);
+/**
+* Watches for changes and runs tasks
+*/
+gulp.task('default', ['readme', 'publicstyles', 'browser-sync'], function () {
+    gulp.watch(watchPHPFiles, reload); // Reload on PHP file changes
+    gulp.watch(SOURCEPATHS.sassPublicSource, ['publicstyles']); // Reload on SCSS file changes
+});
