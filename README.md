@@ -39,6 +39,9 @@ The image to be displayed for posts that do not have a feature image set should 
 * WordPress Plugin Boilerplate https://github.com/DevinVinson/WordPress-Plugin-Boilerplate was used as the starting point for this plugin.
 
 ## Changelog ##
+### 1.1.0 ###
+* Added gulp and gulp tasks.
+* Changed to enqueue minified version of css.
 
 ### 1.0.1 ###
 * Added posts-by-categories shortcode.
