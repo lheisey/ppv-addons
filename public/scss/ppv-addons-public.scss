@@ -1,37 +1,39 @@
 /**
  * All of the CSS for the public-facing functionality.
  */
+
+$primary-dark: #316333;
+$secondary-dark: #45658c;
+$gray-medium: #666666;
+
 /*  plugin : wp-pagenavi
 /* ------------------------------------ */
 .wp-pagenavi span {
-  color: #666666;
+  color: $gray-medium;
   font-size: 16px;
-  padding: 7px 8px !important;
+  padding: 7px 8px!important;
   display: inline;
-  margin: 0 2px !important;
+  margin: 0 2px!important;
 }
 
 /*  PPV pagination
 /* ------------------------------------ */
 .ppv-pagination {
   padding-top: 10px;
-}
-
+}    
 .ppv-pagination .page-numbers {
   padding: 4px 8px;
   margin: 0px 4px;
   border: none;
-  color: #45658c;
+  color: $secondary-dark;  
 }
-
 .ppv-pagination .current {
-  border: 1px solid #316333;
-  color: #316333;
+  border: 1px solid $primary-dark;
+  color: $primary-dark;
 }
-
 .ppv-pagination .prev, .ppv-pagination .next {
   border: none;
-  color: #45658c;
+  color: $secondary-dark;
 }
 
 /*  Media Object
@@ -39,22 +41,18 @@
 .ppv-mediaobj {
   margin: 0 4px 4px 4px;
 }
-
 .ppv-mediaobj, .ppv-media__body {
   overflow: hidden;
   _overflow: visible;
   zoom: 1;
 }
-
 .ppv-mediaobj .ppv-media__img {
   float: left;
   margin-right: 10px;
 }
-
 .ppv-mediaobj .ppv-media__img img {
   display: block;
 }
-
 .ppv-mediaobj .imgExt {
   float: right;
   margin-left: 10px;
@@ -77,9 +75,7 @@
 /*  Autoprefixer check
 /* ------------------------------------ */
 h1:hover {
-  -webkit-transition: color 1s ease;
-  -o-transition: color 1s ease;
-  transition: color 1s ease;
+  transition: color 1s ease
 }
 
 /*  Browsersync check
