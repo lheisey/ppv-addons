@@ -121,9 +121,14 @@ class Ppv_Addons_Public {
 
             endwhile;
             $output .= "</div>" . "\n";
-            $output .= ppv_Pagination( $the_query ); 
-            wp_reset_postdata();	
-
+            if ( function_exists('wp_pagenavi') ) {
+                $output .= wp_pagenavi( array( 'query' => $the_query, 'echo'=>false) );
+            } else {
+                $current_page = max( 1, get_query_var('paged') );
+                $total_pages = $the_query->max_num_pages;
+                $output .= ppv_Pagination( $current_page, $total_pages ); 
+            }
+            wp_reset_postdata();
         else:
             $output .= "<h2>Sorry, no posts were found!</h2>";
         endif;
@@ -259,15 +264,7 @@ class Ppv_Addons_Public {
 
         // if there's more than one page
         if( $pages > 1 ):
-            $output .= '<div class="ppv-pagination">' . "\n";
-            $big = 999999999; // need an unlikely integer
-            $output .=  paginate_links( array(
-                'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-                'format'  => '?paged=%#%',
-                'current' => $page,
-                'total'   => $pages
-                ) );
-            $output .=  "\n" . "</div>";
+            $output .= ppv_Pagination( $page, $pages ); 
         endif;
 
         return $output;

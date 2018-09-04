@@ -22,6 +22,10 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
     * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     * default_image (default ppv-default.jpg) - Image to display for posts that do not have a feature image set.
 
+* tags-by-number - Displays all tags and count for each. Output list will be paged. Shortcode options:
+    * posts_per_page [default 24] - Set number of tags per page for paged output.
+    * order [default DESC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
+    
 ## Installation ##
 
 1. Upload ppv-addons.zip to plugins via WordPress admin panel or upload unzipped folder to the `/wp-content/plugins/` folder.
@@ -39,6 +43,10 @@ The image to be displayed for posts that do not have a feature image set should 
 * WordPress Plugin Boilerplate https://github.com/DevinVinson/WordPress-Plugin-Boilerplate was used as the starting point for this plugin.
 
 ## Changelog ##
+
+### 1.2 ###
+* Added tags-by-number shortcode.
+* Restructured ppv_Pagination function.
 
 ### 1.1 ###
 * Added gulp and gulp tasks.
