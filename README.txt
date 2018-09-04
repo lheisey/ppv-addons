@@ -47,6 +47,9 @@ The image to be displayed for posts that do not have a feature image set should 
 
 == Changelog ==
 
+= 1.1 =
+* Added gulp and gulp tasks.
+
 = 1.0.1 =
 * Added posts-by-categories shortcode.
 * Changed PLUGIN_NAME_VERSION to PPV_ADDONS_VERSION.

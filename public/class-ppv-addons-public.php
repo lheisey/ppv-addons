@@ -210,7 +210,69 @@ class Ppv_Addons_Public {
         wp_reset_postdata();
         return $output;
     }
-    
+
+    /**
+     * List tags by number.
+     *
+     * @since 1.1.0
+     *
+     * @param array  $atts
+     * @return string HTML output
+     */
+    public function ppv_Tags_By_Number( $atts ) {
+        $atts = shortcode_atts (
+        array( 
+            'per_page' => 24,
+            'order' => 'DESC',
+        ), $atts, 'tags-by-number' );
+        
+        $per_page = sanitize_text_field( $atts['per_page'] );
+        $order = sanitize_key( $atts['order'] );
+        
+        $page = ( get_query_var('paged') ) ? get_query_var( 'paged' ) : 1;
+        $offset = ( $page-1 ) * $per_page;
+        $term_args = array( 
+            'orderby' => 'count',
+            'order' => $order,
+            'number' => $per_page,
+            'offset' => $offset,
+            'hide_empty' => 0
+            );
+
+        $taxonomy = 'post_tag';
+        $tax_terms = get_terms($taxonomy, $term_args);
+        $output = '';
+        if ($tax_terms) {
+            $output .= '<div class="ppv-listing ppv-bytagnumber">' . "\n";
+            $output .= '<ul>';
+            foreach ($tax_terms as $tax_term) {
+                $output .=  '<li>' . '<a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all posts in %s" ), $tax_term->name ) . '" ' . '>' . $tax_term->name .' <span>(' . $tax_term->count . ')</span></a></li>' . "\n";
+            }
+            $output .= '</ul>' . "\n";
+            $output .= "</div><!-- .ppv-listing -->" . "\n";
+        } else {
+          $output .= "<h2>Sorry, no posts were found!</h2>";
+        }
+        // pagination
+        $total_terms = wp_count_terms( 'post_tag' );
+        $pages = ceil($total_terms/$per_page);
+
+        // if there's more than one page
+        if( $pages > 1 ):
+            $output .= '<div class="ppv-pagination">' . "\n";
+            $big = 999999999; // need an unlikely integer
+            $output .=  paginate_links( array(
+                'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+                'format'  => '?paged=%#%',
+                'current' => $page,
+                'total'   => $pages
+                ) );
+            $output .=  "\n" . "</div>";
+        endif;
+
+        return $output;
+    }
+
 	/**
 	 * Registers all shortcodes at once
 	 *
@@ -220,7 +282,7 @@ class Ppv_Addons_Public {
 
 		add_shortcode( 'posts-by-date', array( $this, 'ppv_Posts_By_Date' ) );
         add_shortcode( 'posts-by-categories', array( $this, 'ppv_Posts_By_Categories' ) );
-
+        add_shortcode( 'tags-by-number', array( $this, 'ppv_Tags_By_Number' ) );
 
 	}
     
