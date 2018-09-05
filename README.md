@@ -12,6 +12,7 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
     * posts_per_page [default 24] - Set number of posts per page for paged output.
     * image_size [default thumbnail] - Set WordPress image size for display of featured image.
     * show_image [default yes] - Whether to display post featured image with the link to post.
+    * use_wp_pagenavi [default yes] - Enables not using wp_pagenavi plugin.
     * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     * default_image (default ppv-default.jpg) - Image to display for posts that do not have a feature image set.
 
@@ -45,8 +46,10 @@ The image to be displayed for posts that do not have a feature image set should 
 ## Changelog ##
 
 ### 1.2 ###
-* Added tags-by-number shortcode.
+* Make yes shortcut options case insensitive.
+* Added shortcut option to not use wp_pagenavi plugin.
 * Restructured ppv_Pagination function.
+* Added tags-by-number shortcode.
 
 ### 1.1 ###
 * Added gulp and gulp tasks.

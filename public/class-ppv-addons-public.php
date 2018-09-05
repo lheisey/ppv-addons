@@ -90,6 +90,7 @@ class Ppv_Addons_Public {
             'posts_per_page' => 24,
             'image_size' => 'thumbnail',
             'show_image' => 'yes',
+            'use_wp_pagenavi' => 'yes',
             'order' => 'DESC',
             'default_image' => 'ppv-default.jpg',
         ), $atts, 'posts-by-date' );
@@ -97,8 +98,13 @@ class Ppv_Addons_Public {
         $posts_per_page = intval( $atts['posts_per_page'] );
         $image_size = sanitize_text_field( $atts['image_size'] );
         $show_image = sanitize_text_field( $atts['show_image'] );
+        $use_wp_pagenavi = sanitize_text_field( $atts['use_wp_pagenavi'] );
         $order = sanitize_key( $atts['order'] );
         $default_image = sanitize_file_name( $atts['default_image'] );
+        
+         // Make options case insensitive
+        $show_image = strtoupper($show_image);
+        $use_wp_pagenavi = strtoupper($use_wp_pagenavi);
         
         $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
         $args = array( 
@@ -112,7 +118,7 @@ class Ppv_Addons_Public {
         if ( $the_query->have_posts() ) :
         $output = '<div class="ppv-listing ppv-bydate">' . "\n";
         while ( $the_query->have_posts() ) : $the_query->the_post();
-                if ( $show_image == 'yes') {
+                if ( $show_image === 'YES') {
                     $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
                     $output .= ppv_Media_Object( $feature_image );
                 } else {
@@ -121,7 +127,7 @@ class Ppv_Addons_Public {
 
             endwhile;
             $output .= "</div>" . "\n";
-            if ( function_exists('wp_pagenavi') ) {
+            if ( ( function_exists('wp_pagenavi') ) && ( $use_wp_pagenavi === 'YES' ) ) {
                 $output .= wp_pagenavi( array( 'query' => $the_query, 'echo'=>false) );
             } else {
                 $current_page = max( 1, get_query_var('paged') );
@@ -160,6 +166,9 @@ class Ppv_Addons_Public {
         $order = sanitize_key( $atts['order'] );
         $default_image = sanitize_file_name( $atts['default_image'] );
         
+         // Make options case insensitive
+        $show_image = strtoupper($show_image);
+        
         global $ppv_category;  //for accessing categories from filters in child themes
         
         //get all categories then display all posts in each term
@@ -196,7 +205,7 @@ class Ppv_Addons_Public {
                      */
                     $output .= apply_filters('ppv_category_header_filter', '<div class="ppv-category-header">' . $ppv_category . '</div>' . "\n");
                         while ( $the_query->have_posts() ) : $the_query->the_post();
-                            if ( $show_image == 'yes') {
+                            if ( $show_image === 'YES') {
                                 $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
                                 $output .= ppv_Media_Object( $feature_image );
                             } else {
