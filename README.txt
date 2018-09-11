@@ -49,11 +49,14 @@ The image to be displayed for posts that do not have a feature image set should 
 == Credits ==
 
 * WordPress Plugin Boilerplate https://github.com/DevinVinson/WordPress-Plugin-Boilerplate was used as the starting point for this plugin.
+* Icons from Noun Project have a Creative Commons license. The tag icon is created by Victor Fernandez and the blog icon is created by Luke Jarrett.
 
 == Changelog ==
 
 = 1.2 =
-* Make yes shortcut options case insensitive.
+* Added icons for blog without featured pictures listing and tag listing.
+* Numerous styling changes to PPV archive list and PPV pagination.
+* Made yes shortcut options case insensitive.
 * Added shortcut option to not use wp_pagenavi plugin.
 * Restructured ppv_Pagination function.
 * Added tags-by-number shortcode.

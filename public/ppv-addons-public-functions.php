@@ -76,8 +76,9 @@ function ppv_Media_Object( $feature_image ) {
 function ppv_Archive_List() {
     ob_start();
     ?>
-          <div class="ppv-list__body">
-          <a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a>
+          <div class="ppv-archive-list">
+          <div class="ppv-archive-icon"><img src="<?php echo PPV_ADDONS_PLUGIN_URL ?>public/images/Blog1.png"></div>
+          <div class="ppv-archive-link"><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></div>
           </div>
     <?php
     $output = ob_get_contents();

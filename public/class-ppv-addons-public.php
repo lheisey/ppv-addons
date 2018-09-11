@@ -116,8 +116,8 @@ class Ppv_Addons_Public {
         $the_query = new WP_Query( $args );
 
         if ( $the_query->have_posts() ) :
-        $output = '<div class="ppv-listing ppv-bydate">' . "\n";
-        while ( $the_query->have_posts() ) : $the_query->the_post();
+            $output = '<div class="ppv-listing ppv-bydate">' . "\n";
+            while ( $the_query->have_posts() ) : $the_query->the_post();
                 if ( $show_image === 'YES') {
                     $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
                     $output .= ppv_Media_Object( $feature_image );
@@ -204,15 +204,15 @@ class Ppv_Addons_Public {
                      * @param string HTML output
                      */
                     $output .= apply_filters('ppv_category_header_filter', '<div class="ppv-category-header">' . $ppv_category . '</div>' . "\n");
-                        while ( $the_query->have_posts() ) : $the_query->the_post();
-                            if ( $show_image === 'YES') {
-                                $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
-                                $output .= ppv_Media_Object( $feature_image );
-                            } else {
-                                $output .= ppv_Archive_List();
-                            }
+                    while ( $the_query->have_posts() ) : $the_query->the_post();
+                        if ( $show_image === 'YES') {
+                            $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
+                            $output .= ppv_Media_Object( $feature_image );
+                        } else {
+                            $output .= ppv_Archive_List();
+                        }
 
-                        endwhile;
+                    endwhile;
                     $output .= "</div><!-- .ppv-category-section -->" . "\n";
                 }
             }
@@ -228,7 +228,7 @@ class Ppv_Addons_Public {
     /**
      * List tags by number.
      *
-     * @since 1.1.0
+     * @since 1.2.0
      *
      * @param array  $atts
      * @return string HTML output
@@ -258,11 +258,12 @@ class Ppv_Addons_Public {
         $output = '';
         if ($tax_terms) {
             $output .= '<div class="ppv-listing ppv-bytagnumber">' . "\n";
-            $output .= '<ul>';
             foreach ($tax_terms as $tax_term) {
-                $output .=  '<li>' . '<a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all posts in %s" ), $tax_term->name ) . '" ' . '>' . $tax_term->name .' <span>(' . $tax_term->count . ')</span></a></li>' . "\n";
+                $output .=  '<div class="ppv-archive-list">' . "\n";
+                $output .= '<div class="ppv-archive-icon"><img src="' . PPV_ADDONS_PLUGIN_URL . 'public/images/Tag1.png"></div>' . "\n";
+                $output .= '<div class="ppv-archive-link"><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all posts in %s" ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '<span class="ppv-list-count">' . $tax_term->count . '</span></a></div>'  . "\n";
+                $output .= "</div>" . "\n";
             }
-            $output .= '</ul>' . "\n";
             $output .= "</div><!-- .ppv-listing -->" . "\n";
         } else {
           $output .= "<h2>Sorry, no posts were found!</h2>";
