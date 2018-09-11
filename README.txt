@@ -52,9 +52,6 @@ The image to be displayed for posts that do not have a feature image set should 
 * Icons from Noun Project have a Creative Commons license. The tag icon is created by Victor Fernandez and the blog icon is created by Luke Jarrett.
 
 == Changelog ==
-= 1.1.0 =
-* Added gulp and gulp tasks.
-* Changed to enqueue minified version of css.
 
 = 1.2 =
 * Added icons for blog without featured pictures listing and tag listing.
@@ -66,6 +63,7 @@ The image to be displayed for posts that do not have a feature image set should 
 
 = 1.1 =
 * Added gulp and gulp tasks.
+* Changed to enqueue minified version of css.
 
 = 1.0.1 =
 * Added posts-by-categories shortcode.
