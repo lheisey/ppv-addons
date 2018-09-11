@@ -4,11 +4,53 @@
 /*  plugin : wp-pagenavi
 /* ------------------------------------ */
 .wp-pagenavi span {
-  color: #666666;
+  color: #666;
   font-size: 16px;
   padding: 7px 8px !important;
   display: inline;
   margin: 0 2px !important;
+}
+
+/*  PPV archive list
+/* ------------------------------------ */
+.ppv-archive-list {
+  margin: 4px 6px 6px 6px;
+  line-height: 1.8em;
+}
+
+.ppv-archive-list a:hover {
+  font-weight: 400;
+}
+
+.ppv-archive-list, .ppv-archive-link {
+  overflow: hidden;
+  _overflow: visible;
+  zoom: 1;
+}
+
+.ppv-archive-list .ppv-archive-icon {
+  float: left;
+  margin-right: 10px;
+  height: 30px;
+}
+
+.ppv-archive-list .ppv-archive-icon img {
+  max-height: 100%;
+  max-width: 100%;
+  vertical-align: middle;
+  -webkit-filter: opacity(40%);
+  filter: opacity(40%);
+}
+
+.ppv-list-count {
+  margin-left: 10px;
+  display: inline-block;
+  text-align: center;
+  background-color: #F0F0F0;
+  width: 1.8em;
+  height: 1.8em;
+  /*  line-height: 1.8em; */
+  border-radius: 50%;
 }
 
 /*  PPV pagination
@@ -20,13 +62,18 @@
 .ppv-pagination .page-numbers {
   padding: 4px 8px;
   margin: 0px 4px;
-  border: none;
+  border: 1px solid #644D31;
   color: #45658c;
 }
 
 .ppv-pagination .current {
-  border: 1px solid #316333;
-  color: #316333;
+  border: none;
+  background-color: #644D31;
+  color: #FFF;
+}
+
+.ppv-pagination a:hover {
+  background-color: #D3C480;
 }
 
 .ppv-pagination .prev, .ppv-pagination .next {
@@ -73,17 +120,3 @@
   letter-spacing: -0.5px;
   margin: 10px 0 4px 0;
 }
-
-/*  Autoprefixer check
-/* ------------------------------------ */
-h1:hover {
-  -webkit-transition: color 1s ease;
-  -o-transition: color 1s ease;
-  transition: color 1s ease;
-}
-
-/*  Browsersync check
-/* ------------------------------------ */
-/*.ppv-media__body  a {
-    color: red;
-}*/

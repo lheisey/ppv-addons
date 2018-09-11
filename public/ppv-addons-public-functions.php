@@ -76,8 +76,9 @@ function ppv_Media_Object( $feature_image ) {
 function ppv_Archive_List() {
     ob_start();
     ?>
-          <div class="ppv-list__body">
-          <a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a>
+          <div class="ppv-archive-list">
+          <div class="ppv-archive-icon"><img src="<?php echo PPV_ADDONS_PLUGIN_URL ?>public/images/Blog1.png"></div>
+          <div class="ppv-archive-link"><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></div>
           </div>
     <?php
     $output = ob_get_contents();
@@ -97,24 +98,21 @@ function ppv_Archive_List() {
  *
  * @since 1.0.0
  *
- * @uses wp_pagenavi if module is installed and active
+ * @param integer $current_page
+ * @param integer $total_pages
  * @return string HTML output
  */
-function ppv_Pagination( $the_query ) {
-    $output = '';
-    if ( function_exists('wp_pagenavi') ) {
-        $output .= wp_pagenavi( array( 'query' => $the_query, 'echo'=>false) );
-    } else {
-        $output = '<div class="ppv-pagination">' . "\n";
-        $big = 999999999; // need an unlikely integer
-        $output .= paginate_links( array(
-            'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-            'format'  => '?paged=%#%',
-            'current' => max( 1, get_query_var('paged') ),
-            'total'   => $the_query->max_num_pages
-            ) );
-        $output .= "\n" . "</div>";
-    }
+function ppv_Pagination( $current_page, $total_pages ) {
+    $output = '<div class="ppv-pagination">' . "\n";
+    $big = 999999999; // need an unlikely integer
+    $output .= paginate_links( array(
+        'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+        'format'  => '?paged=%#%',
+        'current' => $current_page,
+        'total'   => $total_pages
+        ) );
+    $output .= "\n" . "</div><!-- .ppv-pagination -->";
+
     /**
      * Filter markup to use for pagination.
      *

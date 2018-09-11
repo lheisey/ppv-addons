@@ -90,6 +90,7 @@ class Ppv_Addons_Public {
             'posts_per_page' => 24,
             'image_size' => 'thumbnail',
             'show_image' => 'yes',
+            'use_wp_pagenavi' => 'yes',
             'order' => 'DESC',
             'default_image' => 'ppv-default.jpg',
         ), $atts, 'posts-by-date' );
@@ -97,8 +98,13 @@ class Ppv_Addons_Public {
         $posts_per_page = intval( $atts['posts_per_page'] );
         $image_size = sanitize_text_field( $atts['image_size'] );
         $show_image = sanitize_text_field( $atts['show_image'] );
+        $use_wp_pagenavi = sanitize_text_field( $atts['use_wp_pagenavi'] );
         $order = sanitize_key( $atts['order'] );
         $default_image = sanitize_file_name( $atts['default_image'] );
+        
+         // Make options case insensitive
+        $show_image = strtoupper($show_image);
+        $use_wp_pagenavi = strtoupper($use_wp_pagenavi);
         
         $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
         $args = array( 
@@ -110,9 +116,9 @@ class Ppv_Addons_Public {
         $the_query = new WP_Query( $args );
 
         if ( $the_query->have_posts() ) :
-        $output = '<div class="ppv-listing ppv-bydate">' . "\n";
-        while ( $the_query->have_posts() ) : $the_query->the_post();
-                if ( $show_image == 'yes') {
+            $output = '<div class="ppv-listing ppv-bydate">' . "\n";
+            while ( $the_query->have_posts() ) : $the_query->the_post();
+                if ( $show_image === 'YES') {
                     $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
                     $output .= ppv_Media_Object( $feature_image );
                 } else {
@@ -121,9 +127,14 @@ class Ppv_Addons_Public {
 
             endwhile;
             $output .= "</div>" . "\n";
-            $output .= ppv_Pagination( $the_query ); 
-            wp_reset_postdata();	
-
+            if ( ( function_exists('wp_pagenavi') ) && ( $use_wp_pagenavi === 'YES' ) ) {
+                $output .= wp_pagenavi( array( 'query' => $the_query, 'echo'=>false) );
+            } else {
+                $current_page = max( 1, get_query_var('paged') );
+                $total_pages = $the_query->max_num_pages;
+                $output .= ppv_Pagination( $current_page, $total_pages ); 
+            }
+            wp_reset_postdata();
         else:
             $output .= "<h2>Sorry, no posts were found!</h2>";
         endif;
@@ -154,6 +165,9 @@ class Ppv_Addons_Public {
         $orderby = sanitize_key( $atts['orderby'] );
         $order = sanitize_key( $atts['order'] );
         $default_image = sanitize_file_name( $atts['default_image'] );
+        
+         // Make options case insensitive
+        $show_image = strtoupper($show_image);
         
         global $ppv_category;  //for accessing categories from filters in child themes
         
@@ -190,15 +204,15 @@ class Ppv_Addons_Public {
                      * @param string HTML output
                      */
                     $output .= apply_filters('ppv_category_header_filter', '<div class="ppv-category-header">' . $ppv_category . '</div>' . "\n");
-                        while ( $the_query->have_posts() ) : $the_query->the_post();
-                            if ( $show_image == 'yes') {
-                                $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
-                                $output .= ppv_Media_Object( $feature_image );
-                            } else {
-                                $output .= ppv_Archive_List();
-                            }
+                    while ( $the_query->have_posts() ) : $the_query->the_post();
+                        if ( $show_image === 'YES') {
+                            $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
+                            $output .= ppv_Media_Object( $feature_image );
+                        } else {
+                            $output .= ppv_Archive_List();
+                        }
 
-                        endwhile;
+                    endwhile;
                     $output .= "</div><!-- .ppv-category-section -->" . "\n";
                 }
             }
@@ -210,7 +224,62 @@ class Ppv_Addons_Public {
         wp_reset_postdata();
         return $output;
     }
-    
+
+    /**
+     * List tags by number.
+     *
+     * @since 1.2.0
+     *
+     * @param array  $atts
+     * @return string HTML output
+     */
+    public function ppv_Tags_By_Number( $atts ) {
+        $atts = shortcode_atts (
+        array( 
+            'per_page' => 24,
+            'order' => 'DESC',
+        ), $atts, 'tags-by-number' );
+        
+        $per_page = sanitize_text_field( $atts['per_page'] );
+        $order = sanitize_key( $atts['order'] );
+        
+        $page = ( get_query_var('paged') ) ? get_query_var( 'paged' ) : 1;
+        $offset = ( $page-1 ) * $per_page;
+        $term_args = array( 
+            'orderby' => 'count',
+            'order' => $order,
+            'number' => $per_page,
+            'offset' => $offset,
+            'hide_empty' => 0
+            );
+
+        $taxonomy = 'post_tag';
+        $tax_terms = get_terms($taxonomy, $term_args);
+        $output = '';
+        if ($tax_terms) {
+            $output .= '<div class="ppv-listing ppv-bytagnumber">' . "\n";
+            foreach ($tax_terms as $tax_term) {
+                $output .=  '<div class="ppv-archive-list">' . "\n";
+                $output .= '<div class="ppv-archive-icon"><img src="' . PPV_ADDONS_PLUGIN_URL . 'public/images/Tag1.png"></div>' . "\n";
+                $output .= '<div class="ppv-archive-link"><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all posts in %s" ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '<span class="ppv-list-count">' . $tax_term->count . '</span></a></div>'  . "\n";
+                $output .= "</div>" . "\n";
+            }
+            $output .= "</div><!-- .ppv-listing -->" . "\n";
+        } else {
+          $output .= "<h2>Sorry, no posts were found!</h2>";
+        }
+        // pagination
+        $total_terms = wp_count_terms( 'post_tag' );
+        $pages = ceil($total_terms/$per_page);
+
+        // if there's more than one page
+        if( $pages > 1 ):
+            $output .= ppv_Pagination( $page, $pages ); 
+        endif;
+
+        return $output;
+    }
+
 	/**
 	 * Registers all shortcodes at once
 	 *
@@ -220,7 +289,7 @@ class Ppv_Addons_Public {
 
 		add_shortcode( 'posts-by-date', array( $this, 'ppv_Posts_By_Date' ) );
         add_shortcode( 'posts-by-categories', array( $this, 'ppv_Posts_By_Categories' ) );
-
+        add_shortcode( 'tags-by-number', array( $this, 'ppv_Tags_By_Number' ) );
 
 	}
     

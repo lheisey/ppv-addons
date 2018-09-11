@@ -19,6 +19,7 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
     * posts_per_page [default 24] - Set number of posts per page for paged output.
     * image_size [default thumbnail] - Set WordPress image size for display of featured image.
     * show_image [default yes] - Whether to display post featured image with the link to post.
+    * use_wp_pagenavi [default yes] - Enables not using wp_pagenavi plugin.
     * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     * default_image (default ppv-default.jpg) - Image to display for posts that do not have a feature image set.
 
@@ -29,6 +30,10 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
     * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     * default_image (default ppv-default.jpg) - Image to display for posts that do not have a feature image set.
 
+* tags-by-number - Displays all tags and count for each. Output list will be paged. Shortcode options:
+    * posts_per_page [default 24] - Set number of tags per page for paged output.
+    * order [default DESC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
+    
 == Installation ==
 
 1. Upload ppv-addons.zip to plugins via WordPress admin panel or upload unzipped folder to the `/wp-content/plugins/` folder.
@@ -44,11 +49,23 @@ The image to be displayed for posts that do not have a feature image set should 
 == Credits ==
 
 * WordPress Plugin Boilerplate https://github.com/DevinVinson/WordPress-Plugin-Boilerplate was used as the starting point for this plugin.
+* Icons from Noun Project have a Creative Commons license. The tag icon is created by Victor Fernandez and the blog icon is created by Luke Jarrett.
 
 == Changelog ==
 = 1.1.0 =
 * Added gulp and gulp tasks.
 * Changed to enqueue minified version of css.
+
+= 1.2 =
+* Added icons for blog without featured pictures listing and tag listing.
+* Numerous styling changes to PPV archive list and PPV pagination.
+* Made yes shortcut options case insensitive.
+* Added shortcut option to not use wp_pagenavi plugin.
+* Restructured ppv_Pagination function.
+* Added tags-by-number shortcode.
+
+= 1.1 =
+* Added gulp and gulp tasks.
 
 = 1.0.1 =
 * Added posts-by-categories shortcode.
