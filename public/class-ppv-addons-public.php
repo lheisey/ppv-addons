@@ -126,7 +126,99 @@ class Ppv_Addons_Public {
                 }
 
             endwhile;
-            $output .= "</div>" . "\n";
+            $output .= "</div><!-- .ppv-listing -->" . "\n";
+            if ( ( function_exists('wp_pagenavi') ) && ( $use_wp_pagenavi === 'YES' ) ) {
+                $output .= wp_pagenavi( array( 'query' => $the_query, 'echo'=>false) );
+            } else {
+                $current_page = max( 1, get_query_var('paged') );
+                $total_pages = $the_query->max_num_pages;
+                $output .= ppv_Pagination( $current_page, $total_pages ); 
+            }
+            wp_reset_postdata();
+        else:
+            $output .= "<h2>Sorry, no posts were found!</h2>";
+        endif;
+        
+        return $output;
+    }
+    
+    /**
+     * List posts alphabetically.
+     *
+     * @since 1.2.1
+     *
+     * @param array  $atts
+     * @return string HTML output
+     */
+    public function ppv_Posts_Alphabetical( $atts ) {
+        $atts = shortcode_atts (
+        array( 
+            'posts_per_page' => 24,
+            'image_size' => 'thumbnail',
+            'show_image' => 'yes',
+            'use_wp_pagenavi' => 'yes',
+            'order' => 'ASC',
+            'default_image' => 'ppv-default.jpg',
+        ), $atts, 'posts-alphabetical' );
+        
+        $posts_per_page = intval( $atts['posts_per_page'] );
+        $image_size = sanitize_text_field( $atts['image_size'] );
+        $show_image = sanitize_text_field( $atts['show_image'] );
+        $use_wp_pagenavi = sanitize_text_field( $atts['use_wp_pagenavi'] );
+        $order = sanitize_key( $atts['order'] );
+        $default_image = sanitize_file_name( $atts['default_image'] );
+        
+         // Make options case insensitive
+        $show_image = strtoupper($show_image);
+        $use_wp_pagenavi = strtoupper($use_wp_pagenavi);
+        
+        $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+        $args = array( 
+            'post_type' => 'post',
+            'posts_per_page' => $posts_per_page,
+            'paged' => $paged,
+            'orderby' => 'title',
+            'order' => $order
+        );
+        global $wpdb, $mam_global_fields, $mam_global_orderby, $post;
+        // Do not alphabetize the, an, a, <em>
+        $mam_global_fields = ",
+           IF($wpdb->posts.post_title REGEXP('^the '),CONCAT(SUBSTR($wpdb->posts.post_title,5), ', ', SUBSTR($wpdb->posts.post_title,1,4)),
+                IF($wpdb->posts.post_title REGEXP('^an '),CONCAT(SUBSTR($wpdb->posts.post_title,4),', ', SUBSTR($wpdb->posts.post_title,1,3)),
+                    IF($wpdb->posts.post_title REGEXP('^a '),CONCAT(SUBSTR($wpdb->posts.post_title,3),', ', SUBSTR($wpdb->posts.post_title,1,2)),
+                        IF($wpdb->posts.post_title REGEXP('^<em>'),CONCAT(SUBSTR($wpdb->posts.post_title,5),', ', SUBSTR($wpdb->posts.post_title,1,4)),
+                            $wpdb->posts.post_title) )  )  )  AS sort_title";
+        $mam_global_orderby = " UPPER(sort_title) ASC";
+        $the_query = new WP_Query( $args );
+        $mam_global_fields = $mam_global_orderby = '';
+        if ( $the_query->have_posts() ) :
+            $in_this_row = 0;
+            $output = '<div class="ppv-listing ppv-alphabetical">' . "\n";
+            while ( $the_query->have_posts() ) : $the_query->the_post();
+                $first_letter = strtoupper(substr(apply_filters('the_title',$post->sort_title),0,1));
+                if ($first_letter != $curr_letter) {
+                    if (++$post_count > 1) {
+                        $output .= ppv_end_prev_letter();
+                    }
+                    $output .= ppv_start_new_letter($first_letter);
+                    $in_this_row = 0;
+                    $curr_letter = $first_letter;
+                }
+               if (++$in_this_row > 1) {
+                    $output .= ppv_end_prev_row();
+                    $output .= ppv_start_new_row();
+                    $in_this_row = 1;
+                }
+                if ( $show_image === 'YES') {
+                    $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
+                    $output .= ppv_Media_Object( $feature_image );
+                } else {
+                    $output .= ppv_Archive_List();
+                }
+
+            endwhile;
+            $output .= ppv_end_prev_letter();
+            $output .= "</div><!-- .ppv-listing -->" . "\n";
             if ( ( function_exists('wp_pagenavi') ) && ( $use_wp_pagenavi === 'YES' ) ) {
                 $output .= wp_pagenavi( array( 'query' => $the_query, 'echo'=>false) );
             } else {
@@ -158,7 +250,7 @@ class Ppv_Addons_Public {
             'orderby' => 'name',
             'order' => 'ASC',
             'default_image' => 'ppv-default.jpg',
-        ), $atts, 'posts-by-date' );
+        ), $atts, 'posts-by-categories' );
         
         $image_size = sanitize_text_field( $atts['image_size'] );
         $show_image = sanitize_text_field( $atts['show_image'] );
@@ -280,6 +372,34 @@ class Ppv_Addons_Public {
         return $output;
     }
 
+    /**
+     * Make sure there is a leading comma for query.
+     *
+     * @since 1.2.1
+     *
+     * @param array $fields
+     * @return array $fields modified
+     */
+    public function mam_posts_fields( $fields ) {
+        global $mam_global_fields;
+        if ($mam_global_fields) $fields .= (preg_match('/^(\s+)?,/',$mam_global_fields)) ? $mam_global_fields : ", $mam_global_fields";
+        return $fields;
+    }
+
+    /**
+     * Alters the sort order of the query.
+     *
+     * @since 1.2.1
+     *
+     * @param array $orderby
+     * @return array $orderby modified
+     */
+    public function mam_posts_orderby( $orderby ) {
+       global $mam_global_orderby;
+       if ($mam_global_orderby) $orderby = $mam_global_orderby;
+       return $orderby;
+    }
+
 	/**
 	 * Registers all shortcodes at once
 	 *
@@ -288,6 +408,7 @@ class Ppv_Addons_Public {
 	public function register_shortcodes() {
 
 		add_shortcode( 'posts-by-date', array( $this, 'ppv_Posts_By_Date' ) );
+        add_shortcode( 'posts-alphabetical', array( $this, 'ppv_Posts_Alphabetical' ) );
         add_shortcode( 'posts-by-categories', array( $this, 'ppv_Posts_By_Categories' ) );
         add_shortcode( 'tags-by-number', array( $this, 'ppv_Tags_By_Number' ) );
 

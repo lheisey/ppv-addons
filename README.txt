@@ -20,6 +20,14 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
     * image_size [default thumbnail] - Set WordPress image size for display of featured image.
     * show_image [default yes] - Whether to display post featured image with the link to post.
     * use_wp_pagenavi [default yes] - Enables not using wp_pagenavi plugin.
+    * order [default DESC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
+    * default_image (default ppv-default.jpg) - Image to display for posts that do not have a feature image set.
+
+* posts-alphabetical - Displays all posts alphabetically. Can show or not show featured images. Output list will be paged and use wp-navi module for pagination if module is active. Shortcode options:
+    * posts_per_page [default 24] - Set number of posts per page for paged output.
+    * image_size [default thumbnail] - Set WordPress image size for display of featured image.
+    * show_image [default yes] - Whether to display post featured image with the link to post.
+    * use_wp_pagenavi [default yes] - Enables not using wp_pagenavi plugin.
     * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     * default_image (default ppv-default.jpg) - Image to display for posts that do not have a feature image set.
 
@@ -40,6 +48,10 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Add the shortcode to a page.
 
+== Demo ==
+
+To see this plugin in use visit the http://picturesquephotoviews.com website. There is one page for each shortcode under the Post & Tag Indexes menu item.
+
 == Frequently Asked Questions ==
 
 = What is the location of default_image? =
@@ -52,6 +64,9 @@ The image to be displayed for posts that do not have a feature image set should 
 * Icons from Noun Project have a Creative Commons license. The tag icon is created by Victor Fernandez and the blog icon is created by Luke Jarrett.
 
 == Changelog ==
+
+= 1.2.1 =
+* Added posts-alphabetical shortcode.
 
 = 1.2 =
 * Added icons for blog without featured pictures listing and tag listing.

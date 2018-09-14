@@ -111,6 +111,30 @@ $white: #FFF;
   margin: 0 4px 4px 4px;
 }
 
+/*  Posts listed alphabetically
+/* ------------------------------------ */
+.ppv-letter-group {
+  width: 100%;
+}
+.ppv-letter-cell {
+  width: 5%;
+  height: 2em;
+  text-align: center;
+  padding-top: 8px;
+  margin-bottom: 8px;
+  background: $primary-dark;
+  color: $white;
+  float: left;
+}
+.ppv-row-cells {
+  width: 90%;
+  float: right;
+  margin-right: 10px;
+}
+.ppv-clear {
+  clear: both;
+ }
+
 /*  Posts listed by categories
 /* ------------------------------------ */
 .ppv-category-header {

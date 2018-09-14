@@ -94,6 +94,86 @@ function ppv_Archive_List() {
 }
 
 /**
+ * Alphabetical list end previous letter.
+ *
+ * @since 1.2.1
+ *
+ * @return string HTML output
+ */
+function ppv_end_prev_letter() {
+    $output = ppv_end_prev_row();
+    $output .= "</div><!-- End of letter-group -->\n";
+    $output .= "<div class='ppv-clear'></div>\n";
+    /**
+     * Filter markup to use for Alphabetical list end previous letter.
+     *
+     * @since 1.2.1
+     *
+     * @param string HTML output
+     */
+    return apply_filters('ppv_end_prev_letter_filter', $output);
+}
+
+/**
+ * Alphabetical list start new letter.
+ *
+ * @since 1.2.1
+ *
+ * @return string HTML output
+ */
+function ppv_start_new_letter( $letter ) {
+    $output = "<div class='ppv-letter-group'>\n";
+    $output .= "    <div class='ppv-letter-cell'>" . $letter . "</div>\n";
+    $output .= ppv_start_new_row();
+    /**
+     * Filter markup to use for Alphabetical list start new letter.
+     *
+     * @since 1.2.1
+     *
+     * @param string HTML output
+     */
+    return apply_filters('ppv_start_new_letter_filter', $output);
+}
+
+/**
+ * Alphabetical list end previous row.
+ *
+ * @since 1.2.1
+ *
+ * @return string HTML output
+ */
+function ppv_end_prev_row() {
+    $output = "    </div><!-- End row-cells -->\n";
+    /**
+     * Filter markup to use for Alphabetical list end previous row.
+     *
+     * @since 1.2.1
+     *
+     * @param string HTML output
+     */
+    return apply_filters('ppv_end_prev_row_filter', $output);
+}
+
+/**
+ * Alphabetical list start new row.
+ *
+ * @since 1.2.1
+ *
+ * @return string HTML output
+ */
+function ppv_start_new_row() {
+    $output = "    <div class='row-cells'>\n";
+    /**
+     * Filter markup to use for Alphabetical list start new letter.
+     *
+     * @since 1.2.1
+     *
+     * @param string HTML output
+     */
+    return apply_filters('ppv_start_new_row_filter', $output);
+}
+
+/**
  * Output pagination.
  *
  * @since 1.0.0

@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://picturesquephotoviews.com/
+ * @link              https://github.com/lheisey/ppv-addons/
  * @since             1.0.0
  * @package           Ppv_Addons
  *
  * @wordpress-plugin
  * Plugin Name:       Picturesque Photo Views Addons
- * Plugin URI:        http://picturesquephotoviews.com/
+ * Plugin URI:        https://github.com/lheisey/ppv-addons/
  * Description:       Provides shortcodes and other functions for use in your WordPress theme.
- * Version:           1.2.0
+ * Version:           1.2.1
  * Author:            Loren Heisey
- * Author URI:        http://picturesquephotoviews.com/
+ * Author URI:        https://github.com/lheisey/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       ppv-addons
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'PPV_ADDONS_VERSION', '1.2.0' );
+define( 'PPV_ADDONS_VERSION', '1.2.1' );
 
 /**
  * Setup plugin constants.
