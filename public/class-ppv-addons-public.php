@@ -373,6 +373,61 @@ class Ppv_Addons_Public {
     }
 
     /**
+     * List tags alphabetically.
+     *
+     * @since 1.2.2
+     *
+     * @param array  $atts
+     * @return string HTML output
+     */
+    public function ppv_Tags_Alphabetical( $atts ) {
+        $atts = shortcode_atts (
+        array( 
+            'per_page' => 24,
+            'order' => 'ASC',
+        ), $atts, 'tags-alphabetical' );
+        
+        $per_page = sanitize_text_field( $atts['per_page'] );
+        $order = sanitize_key( $atts['order'] );
+        
+        $page = ( get_query_var('paged') ) ? get_query_var( 'paged' ) : 1;
+        $offset = ( $page-1 ) * $per_page;
+        $term_args = array( 
+            'orderby' => 'name',
+            'order' => $order,
+            'number' => $per_page,
+            'offset' => $offset,
+            'hide_empty' => 0
+            );
+
+        $taxonomy = 'post_tag';
+        $tax_terms = get_terms($taxonomy, $term_args);
+        $output = '';
+        if ($tax_terms) {
+            $output .= '<div class="ppv-listing ppv-alphabetical">' . "\n";
+            foreach ($tax_terms as $tax_term) {
+                $output .=  '<div class="ppv-archive-list">' . "\n";
+                $output .= '<div class="ppv-archive-icon"><img src="' . PPV_ADDONS_PLUGIN_URL . 'public/images/Tag1.png"></div>' . "\n";
+                $output .= '<div class="ppv-archive-link"><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all posts in %s" ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '<span class="ppv-list-count">' . $tax_term->count . '</span></a></div>'  . "\n";
+                $output .= "</div>" . "\n";
+            }
+            $output .= "</div><!-- .ppv-listing -->" . "\n";
+        } else {
+          $output .= "<h2>Sorry, no posts were found!</h2>";
+        }
+        // pagination
+        $total_terms = wp_count_terms( 'post_tag' );
+        $pages = ceil($total_terms/$per_page);
+
+        // if there's more than one page
+        if( $pages > 1 ):
+            $output .= ppv_Pagination( $page, $pages ); 
+        endif;
+
+        return $output;
+    }
+
+    /**
      * Make sure there is a leading comma for query.
      *
      * @since 1.2.1
@@ -411,7 +466,7 @@ class Ppv_Addons_Public {
         add_shortcode( 'posts-alphabetical', array( $this, 'ppv_Posts_Alphabetical' ) );
         add_shortcode( 'posts-by-categories', array( $this, 'ppv_Posts_By_Categories' ) );
         add_shortcode( 'tags-by-number', array( $this, 'ppv_Tags_By_Number' ) );
-
+        add_shortcode( 'tags-alphabetical', array( $this, 'ppv_Tags_Alphabetical' ) );
 	}
     
 }
