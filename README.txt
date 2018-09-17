@@ -38,9 +38,13 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
     * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     * default_image (default ppv-default.jpg) - Image to display for posts that do not have a feature image set.
 
-* tags-by-number - Displays all tags and count for each. Output list will be paged. Shortcode options:
+* tags-by-number - Displays all tags with count by order of count number. Output list will be paged. Shortcode options:
     * posts_per_page [default 24] - Set number of tags per page for paged output.
     * order [default DESC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
+
+* tags-alphabetical - Displays all tags with count by alphabetical order. Output list will be paged. Shortcode options:
+    * posts_per_page [default 24] - Set number of tags per page for paged output.
+    * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     
 == Installation ==
 
@@ -64,6 +68,9 @@ The image to be displayed for posts that do not have a feature image set should 
 * Icons from Noun Project have a Creative Commons license. The tag icon is created by Victor Fernandez and the blog icon is created by Luke Jarrett.
 
 == Changelog ==
+
+= 1.2.2 =
+* Added tags-alphabetical shortcode.
 
 = 1.2.1 =
 * Added posts-alphabetical shortcode.
