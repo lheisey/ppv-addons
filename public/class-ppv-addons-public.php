@@ -406,11 +406,26 @@ class Ppv_Addons_Public {
         if ($tax_terms) {
             $output .= '<div class="ppv-listing ppv-alphabetical">' . "\n";
             foreach ($tax_terms as $tax_term) {
+                $first_letter = strtoupper(substr($tax_term->name,0,1));
+                if ($first_letter != $curr_letter) {
+                    if (++$post_count > 1) {
+                        $output .= ppv_end_prev_letter();
+                    }
+                    $output .= ppv_start_new_letter($first_letter);
+                    $in_this_row = 0;
+                    $curr_letter = $first_letter;
+                }
+                if (++$in_this_row > 1) {
+                    $output .= ppv_end_prev_row();
+                    $output .= ppv_start_new_row();
+                    $in_this_row = 1;
+                }
                 $output .=  '<div class="ppv-archive-list">' . "\n";
                 $output .= '<div class="ppv-archive-icon"><img src="' . PPV_ADDONS_PLUGIN_URL . 'public/images/Tag1.png"></div>' . "\n";
                 $output .= '<div class="ppv-archive-link"><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all posts in %s" ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '<span class="ppv-list-count">' . $tax_term->count . '</span></a></div>'  . "\n";
                 $output .= "</div>" . "\n";
             }
+            $output .= ppv_end_prev_letter();
             $output .= "</div><!-- .ppv-listing -->" . "\n";
         } else {
           $output .= "<h2>Sorry, no posts were found!</h2>";
