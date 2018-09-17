@@ -73,11 +73,11 @@ function ppv_Media_Object( $feature_image ) {
  *
  * @return string HTML output
  */
-function ppv_Archive_List() {
+function ppv_Archive_List( $default_post_icon ) {
     ob_start();
     ?>
           <div class="ppv-archive-list">
-          <div class="ppv-archive-icon"><img src="<?php echo PPV_ADDONS_PLUGIN_URL ?>public/images/Blog1.png"></div>
+          <div class="ppv-archive-icon"><img src="<?php echo PPV_ADDONS_PLUGIN_URL ?>public/images/<?php echo $default_post_icon ?>"></div>
           <div class="ppv-archive-link"><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></div>
           </div>
     <?php
