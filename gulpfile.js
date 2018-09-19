@@ -1,15 +1,14 @@
 /*jslint node:true*/    // For node.js turn off jslint used before it was defined warnings
 'use strict';
-var gulp = require('gulp');
-var readme = require('gulp-readme-to-markdown');
-var sass = require('gulp-sass');
-var cleanCSS = require('gulp-clean-css');
-var rename = require('gulp-rename');
-var autoprefixer = require('gulp-autoprefixer');
-var browserSync = require('browser-sync');
+var gulp = require('gulp'),
+    readme = require('gulp-readme-to-markdown'),
+    sass = require('gulp-sass'),
+    cleanCSS = require('gulp-clean-css'),
+    rename = require('gulp-rename'),
+    autoprefixer = require('gulp-autoprefixer'),
+    browserSync = require('browser-sync').create();
 
-var reload = browserSync.reload; // For manual reload
-var projectURL = 'localhost/wordpress';
+var projectURL = 'localhost/wordpress/';  // Set local URL if using Browser-Sync
 
 var autoprefixerOptions = {
     browsers: [
@@ -30,6 +29,13 @@ var sassOptions = {
     outputStyle: 'expanded'
 };
 
+var browserSyncOptions = {
+    notify: false,
+    open: true,
+    proxy: projectURL,
+    injectChanges: true
+};
+
 var SOURCEPATHS = {
     sassAdminSource : 'admin/scss/*.scss',
     sassPublicSource : 'public/scss/*.scss'
@@ -48,24 +54,13 @@ var watchPHPFiles =  [
 /**
 * Convert WordPress readme.txt to github readme.md
 */
-gulp.task('readme', function () {
-    gulp.src([ 'readme.txt' ])
+gulp.task('readme', function (done) {
+    gulp.src([ 'README.txt' ])
         .pipe(readme({
             details: false
         }))
         .pipe(gulp.dest('.'));
-});
-
-/**
-* Live reloads and CSS injections
-*/
-gulp.task('browser-sync', function () {
-    browserSync.init({
-        notify: false,
-        open: true,
-        proxy: projectURL,
-        injectChanges: true
-    });
+    done();
 });
 
 /**
@@ -83,10 +78,30 @@ gulp.task('publicstyles', function () {
         .pipe(browserSync.stream()); // Reloads min.css if enqueued
 });
 
+
+/**
+* Browser-Sync watch files and inject changes
+*/
+gulp.task('browsersync', function () {
+    var files = [
+        SOURCEPATHS.sassPublicSource,
+        watchPHPFiles
+    ];
+    browserSync.init(files, browserSyncOptions);
+    gulp.watch(SOURCEPATHS.sassPublicSource, gulp.parallel('publicstyles')); // Reload on SCSS file changes
+});
+
+/**
+* Watch files for changes (without Browser-Sync)
+*/
+gulp.task('watch', function () {
+
+    gulp.watch(SOURCEPATHS.sassPublicSource, gulp.parallel('publicstyles')); // Watch SCSS files
+    gulp.watch('README.txt', gulp.parallel('readme')); // Watch readme.txt file
+
+});
+
 /**
 * Watches for changes and runs tasks
 */
-gulp.task('default', ['readme', 'publicstyles', 'browser-sync'], function () {
-    gulp.watch(watchPHPFiles, reload); // Reload on PHP file changes
-    gulp.watch(SOURCEPATHS.sassPublicSource, ['publicstyles']); // Reload on SCSS file changes
-});
+gulp.task('default', gulp.parallel('readme', 'publicstyles'));

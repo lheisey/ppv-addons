@@ -24,7 +24,7 @@
   "homepage": "https://github.com/lheisey/ppv-addons#readme",
   "devDependencies": {
     "browser-sync": "^2.24.7",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-clean-css": "^3.10.0",
     "gulp-readme-to-markdown": "^0.2.1",

@@ -44,7 +44,7 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
     * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     * default_tag_icon (default Tag1.png) - Tag icon to display for tag listing.
     
-## Installation ##
+## Plugin Installation ##
 
 1. Upload ppv-addons.zip to plugins via WordPress admin panel or upload unzipped folder to the `/wp-content/plugins/` folder.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
@@ -52,7 +52,7 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
 
 ## Demo ##
 
-To see this plugin in use visit the http://picturesquephotoviews.com website. There is one page for each shortcode under the Post & Tag Indexes menu item.
+To see this plugin in use visit the http://picturesquephotoviews.com website. There is one page for each shortcode under the **Post & Tag Indexes** menu item.
 
 ## Frequently Asked Questions ##
 
@@ -66,6 +66,11 @@ The image or icon should be placed in the directory wp-content\plugins\ppv-addon
 * Icons from Noun Project have a Creative Commons license. The tag icon is created by Victor Fernandez and the blog icon is created by Luke Jarrett.
 
 ## Changelog ##
+
+### 1.3 ###
+* Updated gulp to version 4.
+* Updated gulpfile.js with gulp version 4 syntax.
+* Removed watch and browsersync from default gulp task.
 
 ### 1.2.3 ###
 * Added shortcut options for selecting post and tag icons.
