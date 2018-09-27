@@ -67,6 +67,9 @@ The image or icon should be placed in the directory wp-content\plugins\ppv-addon
 
 ## Changelog ##
 
+### 1.3.1 ###
+* Changed css class in ppv_start_new_row() to ppv-row-cells.
+
 ### 1.3 ###
 * Updated gulp to version 4.
 * Updated gulpfile.js with gulp version 4 syntax.

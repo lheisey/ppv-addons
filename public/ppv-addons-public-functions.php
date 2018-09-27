@@ -162,7 +162,7 @@ function ppv_end_prev_row() {
  * @return string HTML output
  */
 function ppv_start_new_row() {
-    $output = "    <div class='row-cells'>\n";
+    $output = "    <div class='ppv-row-cells'>\n";
     /**
      * Filter markup to use for Alphabetical list start new letter.
      *
