@@ -61,6 +61,27 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
 
 To see this plugin in use visit the http://picturesquephotoviews.com website. There is one page for each shortcode under the **Post & Tag Indexes** menu item.
 
+== Using Gulp functionality ==
+
+As a prerequisite node.js must be installed on the computer. Node.js installers can be found at https://nodejs.org and version 8 or later is recommended.
+
+If gulp version 3 is installed globally on the computer it should be uninstalled. Gulp-cli which supports both gulp version 3 and 4 is then installed. Linux users might need to use sudo depending on how the computer is set up. If gulp is not installed globally then just step 2 needs to be done.
+1. npm uninstall -g gulp
+2. npm install -g gulp-cli
+
+Open a command prompt/terminal and cd to the ppv-addon plugin folder. The gulp plugins and their dependencies first need to be installed.
+* npm install
+
+After this is complete the gulp tasks can be run.
+
+Command | Task
+--- | ---
+gulp | compiles SASS and readme
+gulp publicstyles | compiles SASS
+gulp readme | compiles readme
+gulp watch | watch files for changes
+gulp browsersync | Browser-Sync watch files and inject changes
+
 == Frequently Asked Questions ==
 
 = What is the location of default_image, default_post_icon, and default_tag_icon? =
