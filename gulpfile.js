@@ -1,3 +1,6 @@
+/**
+* Gulp file for ppv-addons
+*/
 'use strict';
 var gulp = require('gulp'),
     readme = require('gulp-readme-to-markdown'),
@@ -11,14 +14,14 @@ var projectURL = 'localhost/wordpress/';  // Set local URL if using Browser-Sync
 
 var autoprefixerOptions = {
     browsers: [
-        "Android 2.3",
-        "Android >= 4",
-        "Chrome >= 20",
-        "Firefox >= 24",
-        "Explorer >= 9",
-        "iOS >= 6",
-        "Opera >= 12",
-        "Safari >= 6"
+        'Android 2.3',
+        'Android >= 4',
+        'Chrome >= 20',
+        'Firefox >= 24',
+        'Explorer >= 9',
+        'iOS >= 6',
+        'Opera >= 12',
+        'Safari >= 6'
     ]
 };
 
