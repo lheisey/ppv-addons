@@ -88,6 +88,10 @@ The image or icon should be placed in the directory wp-content\plugins\ppv-addon
 
 ## Changelog ##
 
+### 1.3.2 ###
+* Add gulp usage to readme.
+* Changes for adding .eslint.js file and moving jslint configuration to editor.
+
 ### 1.3.1 ###
 * Changed css class in ppv_start_new_row() to ppv-row-cells.
 
