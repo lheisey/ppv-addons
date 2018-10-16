@@ -1,4 +1,3 @@
-/*jslint node:true*/    // For node.js turn off jslint used before it was defined warnings
 'use strict';
 var gulp = require('gulp'),
     readme = require('gulp-readme-to-markdown'),
