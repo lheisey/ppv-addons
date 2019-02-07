@@ -2,7 +2,7 @@
 Contributors: lheisey
 Tags: shortcode, posts, display, list, chronological
 Requires at least: 3.0.1
-Tested up to: 4.9
+Tested up to: 5.0
 Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -42,12 +42,12 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
     * default_post_icon (default Blog1.png) - Post icon to display when not using show_image.
 
 * tags-by-number - Displays all tags with count by order of count number. Output list will be paged. Shortcode options:
-    * posts_per_page [default 24] - Set number of tags per page for paged output.
+    * per_page [default 24] - Set number of tags per page for paged output.
     * order [default DESC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     * default_tag_icon (default Tag1.png) - Tag icon to display for tag listing.
 
 * tags-alphabetical - Displays all tags with count by alphabetical order. Output list will be paged. Shortcode options:
-    * posts_per_page [default 24] - Set number of tags per page for paged output.
+    * per_page [default 24] - Set number of tags per page for paged output.
     * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     * default_tag_icon (default Tag1.png) - Tag icon to display for tag listing.
     
@@ -94,6 +94,10 @@ The image or icon should be placed in the directory wp-content\plugins\ppv-addon
 * Icons from Noun Project have a Creative Commons license. The tag icon is created by Victor Fernandez and the blog icon is created by Luke Jarrett.
 
 == Changelog ==
+
+= 1.3.3 =
+* Corrected tag shortcode option in readme.
+* Updated readme tested up to 5.0.
 
 = 1.3.2 =
 * Add gulp usage to readme.
