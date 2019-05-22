@@ -2,8 +2,9 @@
 Contributors: lheisey
 Tags: shortcode, posts, display, list, chronological
 Requires at least: 3.0.1
-Tested up to: 5.0
+Tested up to: 5.2
 Stable tag: 4.3
+Requires PHP: 5.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -94,8 +95,12 @@ The image or icon should be placed in the directory wp-content\plugins\ppv-addon
 * Icons from Noun Project have a Creative Commons license. The tag icon is created by Victor Fernandez and the blog icon is created by Luke Jarrett.
 
 == Changelog ==
+= 1.3.5 =
+* Added Requires PHP to readme.
+* Updated readme tested up to 5.2.
+
 = 1.3.4 =
-* Updated Browser-Sync version
+* Updated Browser-Sync version.
 
 = 1.3.3 =
 * Corrected tag shortcode option in readme.

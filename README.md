@@ -87,8 +87,12 @@ The image or icon should be placed in the directory wp-content\plugins\ppv-addon
 * Icons from Noun Project have a Creative Commons license. The tag icon is created by Victor Fernandez and the blog icon is created by Luke Jarrett.
 
 ## Changelog ##
+### 1.3.5 ###
+* Added Requires PHP to readme.
+* Updated readme tested up to 5.2.
+
 ### 1.3.4 ###
-* Updated Browser-Sync version
+* Updated Browser-Sync version.
 
 ### 1.3.3 ###
 * Corrected tag shortcode option in readme.
