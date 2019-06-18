@@ -39,7 +39,7 @@
   max-width: 100%;
   vertical-align: middle;
   -webkit-filter: opacity(40%);
-  filter: opacity(40%);
+          filter: opacity(40%);
 }
 
 .ppv-list-count {

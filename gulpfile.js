@@ -70,8 +70,8 @@ gulp.task('readme', function (done) {
 */
 gulp.task('publicstyles', function () {
     return gulp.src(SOURCEPATHS.sassPublicSource)
-        .pipe(autoprefixer(autoprefixerOptions))
         .pipe(sass(sassOptions).on('error', sass.logError))
+        .pipe(autoprefixer(autoprefixerOptions))
         .pipe(gulp.dest(DESTINATIONPATHS.cssPublicDestination))
         .pipe(browserSync.stream()) // Reloads css if enqueued
         .pipe(cleanCSS({compatibility: 'ie9'}))
