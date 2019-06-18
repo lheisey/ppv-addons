@@ -23,12 +23,12 @@
   },
   "homepage": "https://github.com/lheisey/ppv-addons#readme",
   "devDependencies": {
-    "browser-sync": "^2.26.5",
+    "browser-sync": "^2.26.7",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.1.0",
     "gulp-clean-css": "^3.10.0",
     "gulp-readme-to-markdown": "^0.2.1",
     "gulp-rename": "^1.4.0",
-    "gulp-sass": "^4.0.1"
+    "gulp-sass": "^4.0.2"
   }
 }
