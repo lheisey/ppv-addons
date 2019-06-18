@@ -12,19 +12,6 @@ var gulp = require('gulp'),
 
 var projectURL = 'localhost/wordpress/';  // Set local URL if using Browser-Sync
 
-var autoprefixerOptions = {
-    browsers: [
-        'Android 2.3',
-        'Android >= 4',
-        'Chrome >= 20',
-        'Firefox >= 24',
-        'Explorer >= 9',
-        'iOS >= 6',
-        'Opera >= 12',
-        'Safari >= 6'
-    ]
-};
-
 var sassOptions = {
     precision: 8,
     errLogToConsole: true,
@@ -71,7 +58,7 @@ gulp.task('readme', function (done) {
 gulp.task('publicstyles', function () {
     return gulp.src(SOURCEPATHS.sassPublicSource)
         .pipe(sass(sassOptions).on('error', sass.logError))
-        .pipe(autoprefixer(autoprefixerOptions))
+        .pipe(autoprefixer())
         .pipe(gulp.dest(DESTINATIONPATHS.cssPublicDestination))
         .pipe(browserSync.stream()) // Reloads css if enqueued
         .pipe(cleanCSS({compatibility: 'ie9'}))
