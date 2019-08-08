@@ -60,7 +60,7 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
 
 == Demo ==
 
-To see this plugin in use visit the http://picturesquephotoviews.com website. There is one page for each shortcode under the **Post & Tag Indexes** menu item.
+To see this plugin in use visit the https://picturesquephotoviews.com website. There is one page for each shortcode under the **Post & Tag Indexes** menu item.
 
 == Using Gulp functionality ==
 
@@ -95,6 +95,9 @@ The image or icon should be placed in the directory wp-content\plugins\ppv-addon
 * Icons from Noun Project have a Creative Commons license. The tag icon is created by Victor Fernandez and the blog icon is created by Luke Jarrett.
 
 == Changelog ==
+= 1.4.2 =
+* Added the custom taxonomy **topics**.
+
 = 1.4.1 =
 * Updated gulp plugin dependencies.
 
@@ -162,4 +165,4 @@ The image or icon should be placed in the directory wp-content\plugins\ppv-addon
 = 1.0 =
 * Initial release.
 
-<!-- edit README.txt since README.md is generated from it -->
+<!-- edit README.txt then run gulp to generate updated README.md  -->

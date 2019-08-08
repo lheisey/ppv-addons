@@ -453,6 +453,46 @@ class Ppv_Addons_Public {
     }
 
     /**
+     * Create the topics non-hierarchical taxonomy.
+     *
+     * @since 1.4.2
+     *
+     * Creates and registers custom non-hierarchical taxonomy topics
+     */
+    function ppv_create_topics_taxonomy() {
+        $labels = array(
+           'name'                       => 'Topics',
+           'singular_name'              => 'Topic',
+           'search_items'               => 'Search Topics',
+           'popular_items'              => 'Popular Topics',
+           'all_items'                  => 'All Topics',
+           'parent_item'                => null,
+           'parent_item_colon'          => null,
+           'edit_item'                  => 'Edit Topic',
+           'update_item'                => 'Update Topic',
+           'add_new_item'               => 'Add New Topic',
+           'new_item_name'              => 'New Topic Name',
+           'separate_items_with_commas' => 'Separate Topics with commas',
+           'add_or_remove_items'        => 'Add or remove Topics',
+           'choose_from_most_used'      => 'Choose from most used Topics',
+           'menu_name'                  => 'Topics',
+        );
+
+        $args = array(
+           'labels'            => $labels,
+           'public'            => true,
+           'show_in_nav_menus' => true,
+           'show_ui'           => true,
+           'show_tagcloud'     => false,
+           'hierarchical'      => false,
+           'rewrite'           => array( 'slug' => 'topic', 'with_front' => false ),
+           'query_var'         => true,
+           'show_admin_column' => true,
+        );
+        register_taxonomy( 'topic', array( 'post' ), $args );
+    }
+
+    /**
      * Make sure there is a leading comma for query.
      *
      * @since 1.2.1

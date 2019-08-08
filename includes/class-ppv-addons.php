@@ -181,6 +181,7 @@ class Ppv_Addons {
         $this->loader->add_filter( 'posts_fields', $plugin_public, 'mam_posts_fields' );
         $this->loader->add_filter( 'posts_orderby', $plugin_public, 'mam_posts_orderby' );
 
+        $this->loader->add_action( 'init', $plugin_public, 'ppv_create_topics_taxonomy' );
         $this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
 
 	}
