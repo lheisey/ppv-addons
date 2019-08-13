@@ -12,7 +12,7 @@ A plugin that adds shortcodes for use in your WordPress theme.
 
 == Description ==
 
-Helpul shortcodes for displaying lists of posts on a page. Includes filters to allow output to be customized in your theme's functions.php.
+Helpul shortcodes for displaying lists of posts on a page. Includes filters to allow output to be customized in your theme's functions.php. There is also a custom taxonomy created.
 
 == Shortcodes Included ==
 
@@ -52,6 +52,10 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
     * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     * default_tag_icon (default Tag1.png) - Tag icon to display for tag listing.
     
+== Custom Taxonomy ==
+
+The custom taxonomy created is called **topics**, is non-hierarchical and is used in posts. Topics can be added in the Topics metabox when editing posts or using quick edit. The admin menu Posts - Topics can also be used to add or edit the topics. To change the taxonomy name from topics to something else will require editing the public/class-ppv-addons-public.php and includes/class-ppv-addons.php files.
+
 == Plugin Installation ==
 
 1. Upload ppv-addons.zip to plugins via WordPress admin panel or upload unzipped folder to the `/wp-content/plugins/` folder.
@@ -97,6 +101,7 @@ The image or icon should be placed in the directory wp-content\plugins\ppv-addon
 == Changelog ==
 = 1.4.2 =
 * Added the custom taxonomy **topics**.
+* Added information in the readme for the custom taxonomy.
 
 = 1.4.1 =
 * Updated gulp plugin dependencies.
