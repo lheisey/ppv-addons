@@ -7,10 +7,14 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     cleanCSS = require('gulp-clean-css'),
     rename = require('gulp-rename'),
+    zip = require('gulp-zip'),
+    pkg = require('./package.json'),
     autoprefixer = require('gulp-autoprefixer'),
     browserSync = require('browser-sync').create();
 
 var projectURL = 'localhost/wordpress/';  // Set local URL if using Browser-Sync
+var pluginName = pkg.name;                // Set plugin name from pacakge.json name
+var packageFolder = '../../../../bundle'; // Put Zip file outside of Wordpress in folder bundle
 
 var sassOptions = {
     precision: 8,
@@ -40,6 +44,18 @@ var watchPHPFiles =  [
     '!node_modules/**/*'
 ];
 
+var zipFiles =  [
+    '../' + pluginName + '/**',
+    '!node_modules/**',
+    '!.git/**',
+    '!.browserslistrc',
+    '!.eslintrc.js',
+    '!.gitignore',
+    '!gulpfile.js',
+    '!package.json',
+    '!package-lock.json'
+];
+
 /**
 * Convert WordPress readme.txt to github readme.md
 */
@@ -67,6 +83,16 @@ gulp.task('publicstyles', function () {
         .pipe(browserSync.stream()); // Reloads min.css if enqueued
 });
 
+/**
+* Package the plugin in a ZIP file
+* base option of gulp.src uses '../' to go up one level so the packaged zip has the folder name inside the zip
+*/
+gulp.task('package', function (done) {
+    gulp.src(zipFiles, { base: "../" })
+        .pipe(zip(pluginName + '.zip'))
+        .pipe(gulp.dest(packageFolder));
+    done();
+});
 
 /**
 * Browser-Sync watch files and inject changes

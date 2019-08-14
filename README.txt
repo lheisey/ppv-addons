@@ -84,6 +84,7 @@ Command | Task
 gulp | compiles SASS and readme
 gulp publicstyles | compiles SASS
 gulp readme | compiles readme
+gulp package | packages the plugin in a ZIP file
 gulp watch | watch files for changes
 gulp browsersync | Browser-Sync watch files and inject changes
 
@@ -99,6 +100,10 @@ The image or icon should be placed in the directory wp-content\plugins\ppv-addon
 * Icons from Noun Project have a Creative Commons license. The tag icon is created by Victor Fernandez and the blog icon is created by Luke Jarrett.
 
 == Changelog ==
+
+= 1.4.3 =
+* Added gulp task to package the plugin in a ZIP file.
+
 = 1.4.2 =
 * Added the custom taxonomy **topics**.
 * Added information in the readme for the custom taxonomy.

@@ -29,6 +29,7 @@
     "gulp-clean-css": "^3.10.0",
     "gulp-readme-to-markdown": "^0.2.1",
     "gulp-rename": "^1.4.0",
-    "gulp-sass": "^4.0.2"
+    "gulp-sass": "^4.0.2",
+    "gulp-zip": "^5.0.0"
   }
 }
