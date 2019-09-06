@@ -100,4 +100,18 @@ class Ppv_Addons_Admin {
 
 	}
 
+    /**
+     * For custom taxonomy admin metabox convert term ids (as ints) to term names (as strings).
+     *
+     * @since 1.4.4
+     */
+    public function ppv_convert_taxonomy_terms_to_integers() {
+        $taxonomy = 'topic';
+        if ( isset( $_POST['tax_input'][ $taxonomy ] ) && is_array( $_POST['tax_input'][ $taxonomy ] ) ) {
+            $terms = $_POST['tax_input'][ $taxonomy ];
+            $new_terms = array_map( 'intval', $terms );
+            $_POST['tax_input'][ $taxonomy ] = $new_terms;
+        }
+    }
+
 }

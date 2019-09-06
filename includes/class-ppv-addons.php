@@ -79,6 +79,8 @@ class Ppv_Addons {
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
+		$this->define_metabox_hooks();
+
 	}
 
 	/**
@@ -117,16 +119,21 @@ class Ppv_Addons {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-ppv-addons-admin.php';
 
 		/**
+		 * The class to use checkbox term selection for non-hierarchical taxonomies.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-ppv-addons-admin-tag-checklist.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-ppv-addons-public.php';
-        
+
 		/**
 		 * Public functions.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/ppv-addons-public-functions.php';
-        
+
 		$this->loader = new Ppv_Addons_Loader();
 
 	}
@@ -162,6 +169,8 @@ class Ppv_Addons {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'ppv_convert_taxonomy_terms_to_integers' );
+
 	}
 
 	/**
@@ -185,6 +194,18 @@ class Ppv_Addons {
         $this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
 
 	}
+
+	/**
+	 * Register all of the hooks related to metaboxes
+	 *
+	 * @since 		1.4.4
+	 * @access 		private
+	 */
+	private function define_metabox_hooks() {
+
+		$ppv_tag_checklist = new Tag_Checklist( 'topic', 'post', false );
+
+	} // define_metabox_hooks()
 
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.

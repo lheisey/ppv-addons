@@ -54,7 +54,7 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
     
 == Custom Taxonomy ==
 
-The custom taxonomy created is called **topics**, is non-hierarchical and is used in posts. Topics can be added in the Topics metabox when editing posts or using quick edit. The admin menu Posts - Topics can also be used to add or edit the topics. To change the taxonomy name from topics to something else will require editing the public/class-ppv-addons-public.php and includes/class-ppv-addons.php files.
+The custom taxonomy created is called **topics**, is non-hierarchical and is used in posts. The admin menu Posts - Topics can be used to add or edit the topics, or using quick edit. To enable adding topics in the Topics metabox when editing posts change in the Tag_Checklist function the false parameter to true.
 
 == Plugin Installation ==
 
@@ -100,6 +100,8 @@ The image or icon should be placed in the directory wp-content\plugins\ppv-addon
 * Icons from Noun Project have a Creative Commons license. The tag icon is created by Victor Fernandez and the blog icon is created by Luke Jarrett.
 
 == Changelog ==
+= 1.4.4 =
+* Changed custom taxonomy admin metabox to checkbox.
 
 = 1.4.3 =
 * Added gulp task to package the plugin in a ZIP file.
