@@ -100,6 +100,10 @@ The image or icon should be placed in the directory wp-content\plugins\ppv-addon
 * Icons from Noun Project have a Creative Commons license. The tag icon is created by Victor Fernandez and the blog icon is created by Luke Jarrett.
 
 == Changelog ==
+
+= 1.5 =
+* Updated plugin version.
+
 = 1.4.4 =
 * Changed custom taxonomy admin metabox to checkbox.
 
