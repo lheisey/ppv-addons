@@ -12,7 +12,7 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     browserSync = require('browser-sync').create();
 
-var projectURL = 'localhost/wordpress/';  // Set local URL if using Browser-Sync
+var projectURL = 'wordpress/';            // Set local URL if using Browser-Sync
 var pluginName = pkg.name;                // Set plugin name from pacakge.json name
 var packageFolder = '../../../../bundle'; // Put Zip file outside of Wordpress in folder bundle
 
