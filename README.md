@@ -93,6 +93,9 @@ The image or icon should be placed in the directory wp-content\plugins\ppv-addon
 
 ## Changelog ##
 
+### 1.5.3 ###
+* Updated gulp plugin dependencies.
+
 ### 1.5.2 ###
 * Changed Browser-Sync gulp projectURL to use VirtualHost rather than localhost.
 
