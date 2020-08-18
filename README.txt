@@ -100,6 +100,8 @@ The image or icon should be placed in the directory wp-content\plugins\ppv-addon
 * Icons from Noun Project have a Creative Commons license. The tag icon is created by Victor Fernandez and the blog icon is created by Luke Jarrett.
 
 == Changelog ==
+= 1.5.4 =
+* Updated gulp plugin dependencies.
 
 = 1.5.3 =
 * Updated gulp plugin dependencies.
