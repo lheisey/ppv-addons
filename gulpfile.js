@@ -7,14 +7,18 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     cleanCSS = require('gulp-clean-css'),
     rename = require('gulp-rename'),
+    changed = require('gulp-changed'),
     zip = require('gulp-zip'),
     pkg = require('./package.json'),
     autoprefixer = require('gulp-autoprefixer'),
     browserSync = require('browser-sync').create();
 
-var projectURL = 'wordpress/';            // Set local URL if using Browser-Sync
-var pluginName = pkg.name;                // Set plugin name from pacakge.json name
-var packageFolder = '../../../../bundle'; // Put Zip file outside of Wordpress in folder bundle
+var pluginName = pkg.name;  // Set plugin name from pacakge.json name
+var packageFolder = 'dist';  // Folder to put Zip file in
+// The following must be changed to match the local WordPress setup
+var projectURL = 'wpsite/';  // Set local URL if using Browser-Sync
+var WPpluginFolder = '../wpsite/wp-content/plugins/';  // Relative path from source to WordPress plugins
+var pluginFolder = WPpluginFolder + pluginName;
 
 var sassOptions = {
     precision: 8,
@@ -35,8 +39,8 @@ var SOURCEPATHS = {
 };
 
 var DESTINATIONPATHS = {
-    cssAdminDestination: 'admin/css',
-    cssPublicDestination: 'public/css'
+    cssAdminDestination: pluginFolder + '/admin/css',
+    cssPublicDestination: pluginFolder + '/public/css'
 };
 
 var watchPHPFiles =  [
@@ -44,9 +48,11 @@ var watchPHPFiles =  [
     '!node_modules/**/*'
 ];
 
-var zipFiles =  [
-    '../' + pluginName + '/**',
+var copyFiles =  [
+    './**',
     '!node_modules/**',
+    '!dist/**',
+    '!*/scss/**',
     '!.git/**',
     '!.browserslistrc',
     '!.eslintrc.js',
@@ -55,6 +61,8 @@ var zipFiles =  [
     '!package.json',
     '!package-lock.json'
 ];
+
+var zipFiles =  WPpluginFolder + pluginName + "/**";
 
 /**
 * Convert WordPress readme.txt to github readme.md
@@ -84,11 +92,36 @@ gulp.task('publicstyles', function () {
 });
 
 /**
+* Build admin styles
+*/
+gulp.task('adminstyles', function () {
+    return gulp.src(SOURCEPATHS.sassAdminSource)
+        .pipe(sass(sassOptions).on('error', sass.logError))
+        .pipe(autoprefixer())
+        .pipe(gulp.dest(DESTINATIONPATHS.cssAdminDestination))
+        .pipe(browserSync.stream()) // Reloads css if enqueued
+        .pipe(cleanCSS({compatibility: 'ie9'}))
+        .pipe(rename({ extname: '.min.css' }))
+        .pipe(gulp.dest(DESTINATIONPATHS.cssAdminDestination))
+        .pipe(browserSync.stream()); // Reloads min.css if enqueued
+});
+
+/**
+* Copy non-processed files if changed
+*/
+gulp.task('copy-files', function() {
+    return gulp.src(copyFiles)
+        .pipe(changed(pluginFolder))
+        .pipe(gulp.dest(pluginFolder));
+});
+
+/**
 * Package the plugin in a ZIP file
-* base option of gulp.src uses '../' to go up one level so the packaged zip has the folder name inside the zip
+* Base option of gulp.src is one level above plugin folder
+*     so the packaged zip has the folder name inside the zip
 */
 gulp.task('package', function (done) {
-    gulp.src(zipFiles, { base: "../" })
+    gulp.src(zipFiles, {base: WPpluginFolder})
         .pipe(zip(pluginName + '.zip'))
         .pipe(gulp.dest(packageFolder));
     done();
@@ -104,19 +137,25 @@ gulp.task('browsersync', function () {
     ];
     browserSync.init(files, browserSyncOptions);
     gulp.watch(SOURCEPATHS.sassPublicSource, gulp.parallel('publicstyles')); // Reload on SCSS file changes
+    gulp.watch(SOURCEPATHS.sassAdminSource, gulp.parallel('adminstyles'));
 });
 
 /**
 * Watch files for changes (without Browser-Sync)
 */
 gulp.task('watch', function () {
-
     gulp.watch(SOURCEPATHS.sassPublicSource, gulp.parallel('publicstyles')); // Watch SCSS files
+    gulp.watch(SOURCEPATHS.sassAdminSource, gulp.parallel('adminstyles'));
     gulp.watch('README.txt', gulp.parallel('readme')); // Watch readme.txt file
-
 });
 
 /**
-* Watches for changes and runs tasks
+* Runs tasks without watch or Browser-Sync
 */
-gulp.task('default', gulp.parallel('readme', 'publicstyles'));
+gulp.task('default', gulp.series('readme', gulp.parallel('publicstyles', 'adminstyles', 'copy-files')));
+
+
+/**
+* Creates zip file to install or upload to production site
+*/
+gulp.task('build', gulp.series('default', 'package'));

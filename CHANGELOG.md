@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 2.0 ###
+* Moved plugin source folder outside of the WordPress installation
+
 ### 1.5.5 ###
 * Added FAQ items for updating readme and plugin version
 * Updated readme tested up to 5.5.
