@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 2.0.1 ###
+* Updated gulp plugin dependencies.
+
 ### 2.0 ###
 * Moved plugin source folder outside of the WordPress installation
 
