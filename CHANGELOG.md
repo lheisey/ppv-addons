@@ -1,5 +1,9 @@
 ## Change Log ##
 
+### 2.0.2 ###
+* Updated gulp plugin dependencies.
+* Updated readme tested up to 5.6.
+
 ### 2.0.1 ###
 * Updated gulp plugin dependencies.
 
