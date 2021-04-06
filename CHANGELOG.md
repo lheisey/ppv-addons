@@ -2,6 +2,7 @@
 
 ### 2.0.3 ###
 * Fixed Undefined variable warnings in class-ppv-addons-public.php.
+* Updated readme tested up to 5.7.
 
 ### 2.0.2 ###
 * Updated gulp plugin dependencies.
