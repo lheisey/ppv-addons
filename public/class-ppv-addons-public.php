@@ -195,6 +195,8 @@ class Ppv_Addons_Public {
         $mam_global_orderby = " UPPER(sort_title) ASC";
         $the_query = new WP_Query( $args );
         $mam_global_fields = $mam_global_orderby = '';
+        $curr_letter = '';
+        $post_count = 0;
         if ( $the_query->have_posts() ) :
             $in_this_row = 0;
             $output = '<div class="ppv-listing ppv-alphabetical">' . "\n";
@@ -413,6 +415,8 @@ class Ppv_Addons_Public {
         $taxonomy = 'post_tag';
         $tax_terms = get_terms($taxonomy, $term_args);
         $output = '';
+        $curr_letter = '';
+        $post_count = 0;
         if ($tax_terms) {
             $output .= '<div class="ppv-listing ppv-alphabetical">' . "\n";
             foreach ($tax_terms as $tax_term) {
