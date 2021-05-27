@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 2.0.4 ###
+* Updated all gulp plugins to latest versions.
+
 ### 2.0.3 ###
 * Fixed Undefined variable warnings in class-ppv-addons-public.php.
 * Updated readme tested up to 5.7.
