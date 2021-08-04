@@ -2,6 +2,7 @@
 
 ### 2.1.0 ###
 * Updated gulp-sass to version 5.
+* Updated readme tested up to 5.8.
 
 ### 2.0.4 ###
 * Updated all gulp plugins to latest versions.
