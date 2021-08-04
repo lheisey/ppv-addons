@@ -4,7 +4,7 @@
 'use strict';
 var gulp = require('gulp'),
     readme = require('gulp-readme-to-markdown'),
-    sass = require('gulp-sass'),
+    sass = require('gulp-sass')(require('node-sass')),
     cleanCSS = require('gulp-clean-css'),
     rename = require('gulp-rename'),
     changed = require('gulp-changed'),
