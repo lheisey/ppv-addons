@@ -74,7 +74,7 @@ class Tag_Checklist {
 		    <div id="<?php echo $taxonomy; ?>-all" class="tabs-panel">
 		    	<input type="hidden" name="tax_input[<?php echo $taxonomy; ?>][]" value="0" />
 		        <ul id="<?php echo $taxonomy; ?>checklist" data-wp-lists="list:<?php echo $taxonomy; ?>" class="categorychecklist form-no-clear">
-					<?php wp_terms_checklist($post->ID, array( 'taxonomy' => $taxonomy, 'popular_cats' => $popular_ids ,  ) ) ?>
+					<?php wp_terms_checklist($post->ID, array( 'taxonomy' => $taxonomy, )); ?>
 				</ul>
 		   </div>
 

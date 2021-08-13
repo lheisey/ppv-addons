@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 2.1.1 ###
+* Fixed undefined variable error.
+
 ### 2.1.0 ###
 * Updated gulp-sass to version 5.
 * Updated readme tested up to 5.8.
