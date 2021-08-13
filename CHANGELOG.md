@@ -2,6 +2,7 @@
 
 ### 2.1.1 ###
 * Fixed undefined variable error.
+* Do not enqueue unused JS and CSS files.
 
 ### 2.1.0 ###
 * Updated gulp-sass to version 5.

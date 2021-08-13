@@ -73,7 +73,9 @@ class Ppv_Addons_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ppv-addons-admin.css', array(), $this->version, 'all' );
+		/** uncomment to use
+		 * wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ppv-addons-admin.css', array(), $this->version, 'all' );
+		 */
 
 	}
 
@@ -96,7 +98,9 @@ class Ppv_Addons_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/ppv-addons-admin.js', array( 'jquery' ), $this->version, false );
+		/** uncomment to use
+		 * wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/ppv-addons-admin.js', array( 'jquery' ), $this->version, false );
+		 */
 
 	}
 

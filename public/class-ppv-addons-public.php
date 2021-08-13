@@ -72,7 +72,9 @@ class Ppv_Addons_Public {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/ppv-addons-public.js', array( 'jquery' ), $this->version, false );
+		/** uncomment to use
+		 * wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/ppv-addons-public.js', array( 'jquery' ), $this->version, false );
+		 */
 
 	}
     
