@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 2.1.2 ###
+* Updated gulp plugin dependencies.
+
 ### 2.1.1 ###
 * Fixed undefined variable error.
 * Do not enqueue unused JS and CSS files.
