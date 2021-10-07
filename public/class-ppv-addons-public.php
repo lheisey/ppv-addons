@@ -526,6 +526,56 @@ class Ppv_Addons_Public {
        return $orderby;
     }
 
+    /**
+     *  Display featured post image in RSS feeds - method 1.
+     *  Insert image into $content.
+     *
+     * @since 2.2.0
+     *
+     * @param $content
+     * @return $content modified
+     */
+    public function ppv_rss_image_content( $content ) {
+        global $post;
+        $ppv_rss_image_size = 'medium';  // TODO: make Admin Menu option
+        if( has_post_thumbnail( $post->ID ) ) {
+            $content = '<figure>' . get_the_post_thumbnail( $post->ID, $ppv_rss_image_size ) . '</figure>' . $content;
+        }
+        return $content;
+    }
+
+    /**
+     *  Display featured post image in RSS feeds - method 2.
+     *  Insert image object into the RSS item (see MB-191).
+     *  Format used by many aggregators.
+     *
+     * @since 2.2.0
+     *
+     */
+    // 
+    public function ppv_rss_image_separate() {
+      global $post;
+      $ppv_rss_image_size = 'medium';  // TODO: make Admin Menu option
+      if (has_post_thumbnail($post->ID)){
+        $thumbnail_ID = get_post_thumbnail_id($post->ID);
+        $thumbnail = wp_get_attachment_image_src( $thumbnail_ID, $ppv_rss_image_size );
+        if (is_array($thumbnail)) {
+          echo '<media:content medium="image" url="' . $thumbnail[0]
+            . '" width="' . $thumbnail[1] . '" height="' . $thumbnail[2] . '" />';
+        }
+      }
+    }
+
+    /**
+     *  Add namespace for media:image element used by ppv_rss_image_separate().
+     *
+     * @since 2.2.0
+     *
+     */
+    public function ppv_rss_image_namespace() {
+      echo 'xmlns:media="http://search.yahoo.com/mrss/"';
+    }
+
 	/**
 	 * Registers all shortcodes at once
 	 *

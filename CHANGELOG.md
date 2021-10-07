@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 2.2.0 ###
+* Display featured post image in RSS feeds.
+
 ### 2.1.2 ###
 * Updated gulp plugin dependencies.
 

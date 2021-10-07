@@ -181,7 +181,7 @@ class Ppv_Addons {
 	 * @access   private
 	 */
 	private function define_public_hooks() {
-
+        $ppv_rss_image_option = 1;  // TODO: make Admin Menu option
 		$plugin_public = new Ppv_Addons_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
@@ -189,6 +189,14 @@ class Ppv_Addons {
         
         $this->loader->add_filter( 'posts_fields', $plugin_public, 'mam_posts_fields' );
         $this->loader->add_filter( 'posts_orderby', $plugin_public, 'mam_posts_orderby' );
+        if ($ppv_rss_image_option === 1) {
+            $this->loader->add_filter( 'the_excerpt_rss', $plugin_public, 'ppv_rss_image_content' );
+            $this->loader->add_filter( 'the_content_feed', $plugin_public, 'ppv_rss_image_content' );
+        }
+        if ($ppv_rss_image_option === 2) {
+            $this->loader->add_filter( 'rss2_ns', $plugin_public, 'ppv_rss_image_namespace' );
+            $this->loader->add_filter( 'rss2_item', $plugin_public, 'ppv_rss_image_separate' );
+        }
 
         $this->loader->add_action( 'init', $plugin_public, 'ppv_create_topics_taxonomy' );
         $this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );

@@ -4,7 +4,7 @@ A plugin that adds shortcodes for use in your WordPress theme.
 
 ## Description ##
 
-Helpul shortcodes for displaying lists of posts on a page. Includes filters to allow output to be customized in your theme's functions.php. There is also a custom taxonomy created.
+Helpul shortcodes for displaying lists of posts on a page. Includes filters to allow output to be customized in your theme's functions.php. There is also a custom taxonomy created and functionality to display the featured post image in RSS feeds.
 
 ## Shortcodes Included ##
 
@@ -47,6 +47,10 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
 ## Custom Taxonomy ##
 
 The custom taxonomy created is called **topics**, is non-hierarchical and is used in posts. The admin menu Posts - Topics can be used to add or edit the topics, or using quick edit. To enable adding topics in the Topics metabox when editing posts change in the Tag_Checklist function the false parameter to true.
+
+## Display featured post image in RSS feeds ##
+
+Two methods are provided to add the featured post image to the RSS feed. The first adds the image to the $content variable of the RSS feed. The second inserts an image object in the RSS feed. The second format is used by many aggregators. To select which change the $ppv_rss_image_option variable in the define_public_hooks function.
 
 ## Plugin Installation ##
 
