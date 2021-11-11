@@ -114,6 +114,11 @@ class Ppv_Addons {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ppv-addons-i18n.php';
 
 		/**
+		 * The class responsible for defining admin pages and fields for plugin.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class.settings-api.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-ppv-addons-admin.php';

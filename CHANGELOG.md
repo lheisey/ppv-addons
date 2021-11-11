@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 2.3.0 ###
+* Added admin settings page for the plugin.
+
 ### 2.2.0 ###
 * Display featured post image in RSS feeds.
 
