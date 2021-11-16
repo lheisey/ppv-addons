@@ -104,16 +104,28 @@ class Ppv_Addons_Admin {
             'ppvaddons_settings' => array(
                 array(
                     'name'        => 'subsection',
-                    'label'       => __( 'PPV Addons Settings', 'wedevs' ),
-                    'desc'        => __( 'This is where the PPV Addons settings will go.', 'wedevs' ),
+                    'label'       => __( 'PPV Addons Settings', 'ppv-addons' ),
+                    'desc'        => __( '', 'ppv-addons' ),
                     'type'        => 'subsection'
+                ),
+                array(
+                    'name'    => 'image-in-rss',
+                    'label'   => __( 'Featured image in RSS feeds', 'ppv-addons' ),
+                    'desc'    => __( 'Choose to display featured post image in RSS feeds and which method to use', 'ppv-addons' ),
+                    'type'    => 'radio',
+                    'default' => '2',
+                    'options' => array(
+                        '0' => 'Do not insert featured image in RSS feeds',
+                        '1' => 'Insert image in RSS feed content',
+                        '2'  => 'Insert as image object in RSS feed'
+                    )
                 )
             ),
             'ppvaddons_help' => array(
                 array(
                     'name'        => 'subsection2',
-                    'label'       => __( 'PPV Addons Help', 'wedevs' ),
-                    'desc'        => __( 'This is where the PPV Addons help will go.', 'wedevs' ),
+                    'label'       => __( 'PPV Addons Help', 'ppv-addons' ),
+                    'desc'        => __( 'This is where the PPV Addons help will go.', 'ppv-addons' ),
                     'type'        => 'subsection'
                 )
             )

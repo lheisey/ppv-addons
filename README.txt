@@ -58,7 +58,7 @@ The custom taxonomy created is called **topics**, is non-hierarchical and is use
 
 == Display featured post image in RSS feeds ==
 
-Two methods are provided to add the featured post image to the RSS feed. The first adds the image to the $content variable of the RSS feed. The second inserts an image object in the RSS feed. The second format is used by many aggregators. To select which change the $ppv_rss_image_option variable in the define_public_hooks function.
+Two methods are provided to add the featured post image to the RSS feed. The first adds the image to the $content variable of the RSS feed. The second inserts an image object in the RSS feed. The second format is used by many aggregators.
 
 == Plugin Installation ==
 
