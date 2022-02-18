@@ -1,5 +1,9 @@
 ## Change Log ##
 
+### 2.3.1 ###
+* Updated gulp plugin dependencies
+* Updated node-sass to version 7.0.1
+
 ### 2.3.0 ###
 * Added admin settings page for the plugin.
 * Added admin option for featured post image in RSS feeds.
