@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 2.3.2 ###
+* Updated gulp plugin dependencies
+
 ### 2.3.1 ###
 * Updated gulp plugin dependencies
 * Updated node-sass to version 7.0.1
