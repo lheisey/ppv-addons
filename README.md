@@ -4,7 +4,7 @@ A plugin that adds shortcodes for use in your WordPress theme.
 
 ## Description ##
 
-Helpul shortcodes for displaying lists of posts on a page. Includes filters to allow output to be customized in your theme's functions.php. There is also a custom taxonomy created and functionality to display the featured post image in RSS feeds.
+Helpful shortcodes for displaying lists of posts on a page. Includes filters to allow output to be customized in your theme's functions.php. There is also a custom taxonomy created and functionality to display the featured post image in RSS feeds.
 
 ## Shortcodes Included ##
 
@@ -43,7 +43,26 @@ Helpul shortcodes for displaying lists of posts on a page. Includes filters to a
     * per_page [default 24] - Set number of tags per page for paged output.
     * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     * default_tag_icon (default Tag1.png) - Tag icon to display for tag listing.
-    
+
+* column - Responsive columns which divides a row into columns. A shortcode is used for each column with the last column (including one-full) containing the option last="true". For screen sizes below a breakpoint the columns become a stacked single column. The breakpoint is defined as 719px by the SASS variable $col-grid-max-width.
+Column size options:
+    * one-full
+    * one-half
+    * one-third, two-third
+    * one-fourth, three-fourth
+    * one-fifth, two-fifth, three-fifth, four-fifth
+
+Column shortcode usage example:
+```
+[column size="one-half"]
+Column one information goes here.
+[/column]
+
+[column size="one-half" last="true"]
+Column two information goes here.
+[/column]
+```
+
 ## Custom Taxonomy ##
 
 The custom taxonomy created is called **topics**, is non-hierarchical and is used in posts. The admin menu Posts - Topics can be used to add or edit the topics, or using quick edit. To enable adding topics in the Topics metabox when editing posts change in the Tag_Checklist function the false parameter to true.
@@ -72,7 +91,7 @@ If gulp version 3 is installed globally on the computer it should be uninstalled
 1. npm uninstall -g gulp
 2. npm install -g gulp-cli
 
-Starting with version 2 of the plugin, the plugin source folder was moved outside of the WordPress installation. This was so the script files, git repo, node mudules, and other files not needed by WordPress are not present. The folder structure used is the ppv-addons plugin source folder and the WordPress installation folder are the same level. The files needed by WordPress are compiled or copied from the ppv-addons plugin source folder to the WordPress installation plugins folder.
+Starting with version 2 of the plugin, the plugin source folder was moved outside of the WordPress installation. This was so the script files, git repo, node modules, and other files not needed by WordPress are not present. The folder structure used is the ppv-addons plugin source folder and the WordPress installation folder are the same level. The files needed by WordPress are compiled or copied from the ppv-addons plugin source folder to the WordPress installation plugins folder.
 
 Download the zipfile from Github and uzip it. Move the unzipped plugin source folder to the same folder containing the WordPress installation. The ppv-addon plugin source folder can be renamed to avoid confusion with the generated ppv-addon plugin folder.
 

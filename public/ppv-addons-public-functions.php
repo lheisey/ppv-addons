@@ -203,3 +203,20 @@ function ppv_Pagination( $current_page, $total_pages ) {
     return apply_filters('ppv_pagination_filter', $output);
 }
 
+/**
+ * Utility function to deal with the way
+ * WordPress auto formats text in a shortcode.
+ *
+ * @since 2.3.3
+ *
+ */
+function custom_filter_shortcode_text($text = "") {
+    // Replace all the poorly formatted P tags that WP adds by default.
+    $tags = array("<p>", "</p>");
+    $text = str_replace($tags, "\n", $text);
+    // Remove any BR tags
+    $tags = array("<br>", "<br/>", "<br />");
+    $text = str_replace($tags, "", $text);
+    // Add back in the P and BR tags again, remove empty ones
+    return apply_filters("the_content", $text);
+}

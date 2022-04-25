@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 2.3.3 ###
+* Added responsive columns shortcode
+
 ### 2.3.2 ###
 * Updated gulp plugin dependencies
 

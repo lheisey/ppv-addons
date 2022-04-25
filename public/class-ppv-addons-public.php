@@ -62,8 +62,8 @@ class Ppv_Addons_Public {
 	public function enqueue_styles() {
 
 	wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ppv-addons-public.min.css', array(), $this->version, 'all' );
-	
-    }
+
+	}
 
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
@@ -77,7 +77,7 @@ class Ppv_Addons_Public {
 		 */
 
 	}
-    
+
     /**
      * List posts by date.
      *
@@ -526,6 +526,29 @@ class Ppv_Addons_Public {
        return $orderby;
     }
 
+    
+    /**
+     * Columns / Grid shortcodes.
+     *
+     * @since 2.3.3
+     *
+     */
+    function ppv_column_shortcode($atts,$content=NULL) {
+        extract( shortcode_atts( array(
+            'size' => 'one-third',
+            'last' => false
+        ), $atts) );
+
+        $lastclass=$last?' ppv-col-last':'';
+        $size = 'ppv-' . $size;  // add prefix in case theme uses same css classes
+        $output='<div class="ppv-col-grid '.strip_tags($size).$lastclass.'">'.do_shortcode($content).'</div>';
+        if($last) {
+            $output.='<div class="ppv-clear"></div>';
+            }
+        $output = custom_filter_shortcode_text($output);
+        return $output;
+    }
+
     /**
      *  Display featured post image in RSS feeds - method 1.
      *  Insert image into $content.
@@ -552,7 +575,6 @@ class Ppv_Addons_Public {
      * @since 2.2.0
      *
      */
-    // 
     public function ppv_rss_image_separate() {
       global $post;
       $ppv_rss_image_size = 'medium';  // TODO: make Admin Menu option
@@ -576,18 +598,19 @@ class Ppv_Addons_Public {
       echo 'xmlns:media="http://search.yahoo.com/mrss/"';
     }
 
-	/**
-	 * Registers all shortcodes at once
-	 *
-	 * @return [type] [description]
-	 */
-	public function register_shortcodes() {
+    /**
+     * Registers all shortcodes at once
+     *
+     * @return [type] [description]
+     */
+    public function register_shortcodes() {
 
-		add_shortcode( 'posts-by-date', array( $this, 'ppv_Posts_By_Date' ) );
+        add_shortcode( 'posts-by-date', array( $this, 'ppv_Posts_By_Date' ) );
         add_shortcode( 'posts-alphabetical', array( $this, 'ppv_Posts_Alphabetical' ) );
         add_shortcode( 'posts-by-categories', array( $this, 'ppv_Posts_By_Categories' ) );
         add_shortcode( 'tags-by-number', array( $this, 'ppv_Tags_By_Number' ) );
         add_shortcode( 'tags-alphabetical', array( $this, 'ppv_Tags_Alphabetical' ) );
-	}
-    
+        add_shortcode( 'column', array( $this, 'ppv_column_shortcode' ) );
+    }
+
 }
