@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 2.3.4 ###
+* Changed posts listed alphabetically CSS for issues with some themes
+
 ### 2.3.3 ###
 * Added responsive columns shortcode
 

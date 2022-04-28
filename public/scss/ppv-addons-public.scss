@@ -136,10 +136,11 @@ $col-grid-max-width: 719px;
 
 .ppv-letter-cell {
   width: 5%;
-  height: 2em;
   text-align: center;
   padding-top: 8px;
+  padding-bottom: 8px;
   margin-bottom: 8px;
+  border-radius: 4px;
   background: $primary-dark;
   color: $white;
   float: left;
@@ -231,4 +232,14 @@ $col-grid-max-width: 719px;
     margin: 0 0 10px;
   }
 
+}
+
+/*  Print
+/* ------------------------------------ */
+@media print {
+  .ppv-letter-cell { 
+    background: $white; 
+    border: 1px solid #000;
+    color: #000;
+  }
 }
