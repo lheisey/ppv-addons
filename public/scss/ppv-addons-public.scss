@@ -3,11 +3,14 @@
  */
 
 $primary-dark: #316333;
-$primary-light: #97B199;
+$primary-light: #98B199;
+$primary-lighter: #D6E0D6;
 $secondary-dark: #45658c;
-$secondary-light: #F0F0F0;
+$secondary-light: #A2B2C6;
+$secondary-lighter: #DAE0E8;
 $tertiary-dark: #644D31;
-$tertiary-light: #D3C480;
+$tertiary-light: #B2A698;
+$tertiary-lighter: #E0DBD6;
 $gray-dark: #222;
 $gray-medium: #666;
 $gray-light: #DDD;
@@ -16,12 +19,30 @@ $col-grid-max-width: 719px;
 
 /*  plugin : wp-pagenavi
 /* ------------------------------------ */
-.wp-pagenavi span {
-  color: $gray-medium;
-  font-size: 16px;
-  padding: 7px 8px !important;
-  display: inline;
-  margin: 0 2px !important;
+.wp-pagenavi {
+  padding-top: 8px;
+}
+
+.wp-pagenavi a, .wp-pagenavi span {
+  text-decoration: none;
+  border: 1px solid $tertiary-dark;
+  padding: 4px 8px !important;
+  margin: 0 4px  !important;
+}
+
+.wp-pagenavi a:hover {
+  background-color: $tertiary-lighter;
+}
+
+.wp-pagenavi span.current {
+  border-color: none;
+  background-color: $tertiary-dark;
+  color: $white;
+  font-weight: 400;
+}
+
+.wp-pagenavi span.extend {
+  border-color: none;
 }
 
 /*  PPV archive list
@@ -59,7 +80,7 @@ $col-grid-max-width: 719px;
   margin-left: 10px;
   display: inline-block;
   text-align: center;
-  background-color: $secondary-light;
+  background-color: $primary-lighter;
   width: 1.8em;
   height: 1.8em;
   /*  line-height: 1.8em; */
@@ -69,30 +90,79 @@ $col-grid-max-width: 719px;
 /*  PPV pagination
 /* ------------------------------------ */
 .ppv-pagination {
-  padding-top: 10px;
+  clear: both;
+  display: block;
+  padding-top: 16px;
+  padding-bottom: 3px;
 }
 
-.ppv-pagination .page-numbers {
+.ppv-pagination a.page-numbers,
+.ppv-pagination a.next,
+.ppv-pagination a.prev,
+.ppv-pagination span.page-numbers,
+.ppv-pagination span.next,
+.ppv-pagination span.prev,
+.ppv-pagination span.current {
+  border: none;
+  border-radius: 2px;
+  box-shadow: none;
+  display:inline;
   padding: 4px 8px;
   margin: 0px 4px;
-  border: 1px solid $tertiary-dark;
+  border: 2px solid $tertiary-dark;
   color: $secondary-dark;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.ppv-pagination .current {
+.ppv-pagination span.dots {
   border: none;
+  box-shadow: none;
+  padding: 4px 6px;
+  color: $secondary-dark;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.ppv-pagination span.current {
   background-color: $tertiary-dark;
   color: $white;
 }
 
-.ppv-pagination a:hover {
-  background-color: $tertiary-light;
+.ppv-pagination a.next,
+.ppv-pagination a.prev,
+.ppv-pagination span.next,
+.ppv-pagination span.prev {
+  background: transparent;
+  color: $secondary-dark;
 }
 
-.ppv-pagination .prev,
-.ppv-pagination .next {
+.ppv-pagination a.page-numbers:hover,
+.ppv-pagination span.page-numbers:hover {
+  background-color: $tertiary-lighter;
+  border: 2px solid $tertiary-light;
+}
+
+.ppv-pagination a.next:hover,
+.ppv-pagination a.prev:hover,
+.ppv-pagination span.next,
+.ppv-pagination span.prev {
+  background-color: $tertiary-lighter;
+  border: 2px solid $tertiary-light;
+}
+
+.ppv-pagination span.dots:hover {
   border: none;
-  color: $secondary-dark;
+  background: transparent;
+  cursor: default;
+}
+
+.ppv-pagination span.current:hover {
+  background-color: $tertiary-dark;
+  cursor: default;
+}
+.ppv-pagination a.page-numbers {
+  display: inline;
 }
 
 /*  Media Object

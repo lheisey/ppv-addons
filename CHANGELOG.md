@@ -1,5 +1,9 @@
 ## Change Log ##
 
+### 2.3.5 ###
+* Changed pagination HTML and CSS for issues with some themes
+* Adjusted some SCSS color variables
+
 ### 2.3.4 ###
 * Changed posts listed alphabetically CSS for issues with some themes
 
