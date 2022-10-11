@@ -1,5 +1,10 @@
 ## Change Log ##
 
+### 2.3.6 ###
+* Updated readme tested up to 6.0
+* Updated required versions in readme
+* Updated gulp plugin dependencies
+
 ### 2.3.5 ###
 * Changed pagination HTML and CSS for issues with some themes
 * Adjusted some SCSS color variables
