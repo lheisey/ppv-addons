@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 2.3.7 ###
+* Made image in RSS admin options translatable
+
 ### 2.3.6 ###
 * Updated readme tested up to 6.0
 * Updated required versions in readme

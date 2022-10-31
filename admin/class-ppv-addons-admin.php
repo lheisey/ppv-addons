@@ -115,9 +115,9 @@ class Ppv_Addons_Admin {
                     'type'    => 'radio',
                     'default' => '2',
                     'options' => array(
-                        '0' => 'Do not insert featured image in RSS feeds',
-                        '1' => 'Insert image in RSS feed content',
-                        '2'  => 'Insert as image object in RSS feed'
+                        '0' => __( 'Do not insert featured image in RSS feeds', 'ppv-addons' ),
+                        '1' => __( 'Insert image in RSS feed content', 'ppv-addons' ),
+                        '2' => __( 'Insert as image object in RSS feed', 'ppv-addons' )
                     )
                 )
             ),
