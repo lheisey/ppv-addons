@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 2.3.8 ###
+* Updated gulp plugin dependencies
+
 ### 2.3.7 ###
 * Made image in RSS admin options translatable
 
