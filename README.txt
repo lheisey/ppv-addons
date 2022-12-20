@@ -2,7 +2,7 @@
 Contributors: lheisey
 Tags: shortcode, posts, display, list, chronological, custom taxonomy
 Requires at least: 5.0
-Tested up to: 6.0
+Tested up to: 6.1
 Stable tag: 4.3
 Requires PHP: 5.6
 License: GPLv2 or later

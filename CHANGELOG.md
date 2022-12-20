@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 2.3.9 ###
+* Updated readme tested up to 6.1
+
 ### 2.3.8 ###
 * Updated gulp plugin dependencies
 
