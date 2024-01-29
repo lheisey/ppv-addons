@@ -392,6 +392,7 @@ class Ppv_Addons_Public {
 
     /**
      * List tags alphabetically.
+     * Display tags in columns starting with version 3.0.1.
      *
      * @since 1.2.2
      *
@@ -426,29 +427,33 @@ class Ppv_Addons_Public {
         $curr_letter = '';
         $post_count = 0;
         if ($tax_terms) {
-            $output .= '<div class="ppv-listing ppv-alphabetical">' . "\n";
+            $output .= "<!-- begin list-->" . "\n";
+            $output .= '<div id="ppvTagMap" class="myTagMap">' . "\n";
+            $output .= '<div class="holdinner">' . "\n";
             foreach ($tax_terms as $tax_term) {
                 $first_letter = strtoupper(substr($tax_term->name,0,1));
                 if ($first_letter != $curr_letter) {
                     if (++$post_count > 1) {
-                        $output .= ppv_end_prev_letter();
+                        // End previous letter
+                        $output .= "</ul>" . "\n";
+                        $output .= "</div><!-- end tagindex-->" . "\n";
                     }
-                    $output .= ppv_start_new_letter($first_letter);
-                    $in_this_row = 0;
+                    // Start new letter
+                    $output .= '<div class="tagindex">' . "\n";
+                    $output .= '<div class="tagindex-heading">' . "\n";
+                    $output .= '<div class="tagindex-letter">' . $first_letter . '</div>' . "\n";
+                    $output .= "</div>" . "\n";
+                    $output .= '<ul class="links">' . "\n";
                     $curr_letter = $first_letter;
                 }
-                if (++$in_this_row > 1) {
-                    $output .= ppv_end_prev_row();
-                    $output .= ppv_start_new_row();
-                    $in_this_row = 1;
-                }
-                $output .=  '<div class="ppv-archive-list">' . "\n";
-                $output .= '<div class="ppv-archive-icon"><img src="' . PPV_ADDONS_PLUGIN_URL . 'public/images/' . $default_tag_icon . '"></div>' . "\n";
-                $output .= '<div class="ppv-archive-link"><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all posts in %s" ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '<span class="ppv-list-count">' . $tax_term->count . '</span></a></div>'  . "\n";
-                $output .= "</div>" . "\n";
+                $output .= '<li><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all posts in %s" ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '<span class="ppvtagmap_count"> (' . $tax_term->count . ')</span></a></li>'  . "\n";
             }
-            $output .= ppv_end_prev_letter();
-            $output .= "</div><!-- .ppv-listing -->" . "\n";
+            // End previous letter
+            $output .= "</ul>" . "\n";
+            $output .= "</div><!-- end tagindex-->" . "\n";
+            $output .= "</div><!-- end holdinner -->" . "\n";
+            $output .= "<div style='clear: both;'></div>". "\n";
+            $output .= "</div><!-- end list-->" . "\n";
         } else {
           $output .= "<h2>Sorry, no posts were found!</h2>";
         }

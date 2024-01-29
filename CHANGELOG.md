@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 3.0.1 ###
+* Display List tags alphabetically in columns
+
 ### 3.0.0 ###
 * Display List tags by number in columns
 

@@ -50,7 +50,7 @@ Helpful shortcodes for displaying lists of posts on a page. Includes filters to 
 * tags-alphabetical - Displays all tags with count by alphabetical order. Output list will be paged. Shortcode options:
     * per_page [default 24] - Set number of tags per page for paged output.
     * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
-    * default_tag_icon (default Tag1.png) - Tag icon to display for tag listing.
+    * default_tag_icon (default Tag1.png) - Tag icon to display for tag listing - not used from version 3.0.1.
 
 * column - Responsive columns which divides a row into columns. A shortcode is used for each column with the last column (including one-full) containing the option last="true". For screen sizes below a breakpoint the columns become a stacked single column. The breakpoint is defined as 719px by the SASS variable $col-grid-max-width.
 Column size options:
