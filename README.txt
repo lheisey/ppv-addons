@@ -2,7 +2,7 @@
 Contributors: lheisey
 Tags: shortcode, posts, display, list, chronological, custom taxonomy
 Requires at least: 5.0
-Tested up to: 6.3
+Tested up to: 6.4
 Stable tag: 4.3
 Requires PHP: 5.6
 License: GPLv2 or later
@@ -93,11 +93,7 @@ To see this plugin in use visit the https://picturesquephotoviews.com website. T
 
 == Using Gulp functionality ==
 
-As a prerequisite node.js must be installed on the computer. Node.js installers can be found at https://nodejs.org and version 8 or later is recommended.
-
-If gulp version 3 is installed globally on the computer it should be uninstalled. Gulp-cli which supports both gulp version 3 and 4 is then installed. Linux users might need to use sudo depending on how the computer is set up. If gulp is not installed globally then just step 2 needs to be done.
-1. npm uninstall -g gulp
-2. npm install -g gulp-cli
+As a prerequisite node.js must be installed on the computer. Node.js installers can be found at https://nodejs.org and version 8 or later is recommended. Gulp-cli should also be installed globally.
 
 Starting with version 2 of the plugin, the plugin source folder was moved outside of the WordPress installation. This was so the script files, git repo, node modules, and other files not needed by WordPress are not present. The folder structure used is the ppv-addons plugin source folder and the WordPress installation folder are the same level. The files needed by WordPress are compiled or copied from the ppv-addons plugin source folder to the WordPress installation plugins folder.
 

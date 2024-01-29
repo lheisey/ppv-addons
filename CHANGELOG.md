@@ -1,5 +1,9 @@
 ## Change Log ##
 
+### 2.4.1 ###
+* Updated readme tested up to 6.4
+* Updated note about Gulp-cli and Gulp installation
+
 ### 2.4.0 ###
 * Updated readme tested up to 6.3
 * Updated gulp plugin dependencies
