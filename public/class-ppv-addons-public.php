@@ -329,6 +329,7 @@ class Ppv_Addons_Public {
 
     /**
      * List tags by number.
+     * Display tags in columns starting with version 3.0.
      *
      * @since 1.2.0
      *
@@ -361,14 +362,19 @@ class Ppv_Addons_Public {
         $tax_terms = get_terms($taxonomy, $term_args);
         $output = '';
         if ($tax_terms) {
-            $output .= '<div class="ppv-listing ppv-bytagnumber">' . "\n";
+            $output .= "<!-- begin list-->" . "\n";
+            $output .= '<div id="ppvTagMap" class="myTagMap">' . "\n";
+            $output .= '<div class="holdinner">' . "\n";
+            $output .= '<div class="tagindex">' . "\n";
+            $output .= '<ul class="links">' . "\n";
             foreach ($tax_terms as $tax_term) {
-                $output .=  '<div class="ppv-archive-list">' . "\n";
-                $output .= '<div class="ppv-archive-icon"><img src="' . PPV_ADDONS_PLUGIN_URL . 'public/images/' . $default_tag_icon . '"></div>' . "\n";
-                $output .= '<div class="ppv-archive-link"><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all posts in %s" ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '<span class="ppv-list-count">' . $tax_term->count . '</span></a></div>'  . "\n";
-                $output .= "</div>" . "\n";
+                $output .= '<li><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all posts in %s" ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '<span class="ppvtagmap_count"> (' . $tax_term->count . ')</span></a></li>'  . "\n";
             }
-            $output .= "</div><!-- .ppv-listing -->" . "\n";
+            $output .= "</ul>" . "\n";
+            $output .= "</div><!-- end tagindex-->" . "\n";
+            $output .= "</div><!-- end holdinner -->" . "\n";
+            $output .= "<div style='clear: both;'></div>". "\n";
+            $output .= "</div><!-- end list-->" . "\n";
         } else {
           $output .= "<h2>Sorry, no posts were found!</h2>";
         }

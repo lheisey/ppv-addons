@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 3.0.0 ###
+* Display List tags by number in columns
+
 ### 2.4.1 ###
 * Updated readme tested up to 6.4
 * Updated note about Gulp-cli and Gulp installation
