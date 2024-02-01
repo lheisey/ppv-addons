@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 3.0.2 ###
+* correct git repo ppv-addons.php version
+
 ### 3.0.1 ###
 * Display List tags alphabetically in columns
 
