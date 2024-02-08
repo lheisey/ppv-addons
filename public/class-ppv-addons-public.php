@@ -245,6 +245,7 @@ class Ppv_Addons_Public {
     
     /**
      * List posts by categories.
+     * Changed to display as rows of cards with version 3.0.4
      *
      * @since 1.0.1
      *
@@ -284,7 +285,7 @@ class Ppv_Addons_Public {
         $terms = get_terms($taxonomy,$term_args);
         $output = '';
         if ($terms) {
-            $output .= '<div class="ppv-listing ppv-bycategory">' . "\n";
+            $output .= '<div class="ppv-bycategory">' . "\n";
             foreach( $terms as $term ) {
                 $args=array(
                   "$param_type" => array($term->term_id),
@@ -307,19 +308,21 @@ class Ppv_Addons_Public {
                      * @param string HTML output
                      */
                     $output .= apply_filters('ppv_category_header_filter', '<div class="ppv-category-header">' . $ppv_category . '</div>' . "\n");
+                    $output .= '<div class="ppv-post-grid">' . "\n";    
                     while ( $the_query->have_posts() ) : $the_query->the_post();
                         if ( $show_image === 'YES') {
                             $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
-                            $output .= ppv_Media_Object( $feature_image );
+                            $output .= ppv_Post_Card( $feature_image );
                         } else {
                             $output .= ppv_Archive_List( $default_post_icon );
                         }
 
                     endwhile;
+                    $output .= "</div><!-- .ppv-post-grid -->" . "\n";
                     $output .= "</div><!-- .ppv-category-section -->" . "\n";
                 }
             }
-            $output .= "</div><!-- .ppv-listing -->" . "\n";
+            $output .= "</div><!-- .ppv-bycategory -->" . "\n";
         } else {
           $output .= "<h2>Sorry, no posts were found!</h2>";
         }

@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 3.0.4 ###
+* Display List posts by categories as rows of cards
+
 ### 3.0.3 ###
 * Display List posts by date as rows of cards
 
