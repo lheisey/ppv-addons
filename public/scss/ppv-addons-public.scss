@@ -236,6 +236,38 @@ $col-grid-max-width: 719px;
   margin: 10px 0 4px 0;
 }
 
+/*  Post card listings
+/* ------------------------------------ */
+.ppv-post-grid { 
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  grid-gap: 20px;
+  align-items: stretch;
+  }
+.ppv-post-grid > .ppv-post-card {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+  max-width: 120px;
+}
+.ppv-post-grid > .ppv-post-card > .ppv-post-link img {
+  max-width: 100%;
+}
+.ppv-post-grid > .ppv-post-card > .ppv-post-link img:hover {
+  transform: scale(1.1);
+  transition: 0.5s ease;
+}
+.ppv-post-grid > .ppv-post-card > .ppv-post-title {
+  padding: 8px 2px 4px 2px;
+}
+.ppv-post-grid > .ppv-post-card {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.4px;
+  margin: 0;
+  text-align: center;
+}
+
 /*  Tag listings
 /* ------------------------------------ */
 #ppvTagMap .holdinner {

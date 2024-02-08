@@ -80,6 +80,7 @@ class Ppv_Addons_Public {
 
     /**
      * List posts by date.
+     * Changed to display as rows of cards with version 3.0.3
      *
      * @since 1.0.0
      *
@@ -120,17 +121,17 @@ class Ppv_Addons_Public {
         $the_query = new WP_Query( $args );
 
         if ( $the_query->have_posts() ) :
-            $output = '<div class="ppv-listing ppv-bydate">' . "\n";
+            $output = '<div class="ppv-post-grid ppv-bydate">' . "\n";
             while ( $the_query->have_posts() ) : $the_query->the_post();
                 if ( $show_image === 'YES') {
                     $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
-                    $output .= ppv_Media_Object( $feature_image );
+                    $output .= ppv_Post_Card( $feature_image );
                 } else {
                     $output .= ppv_Archive_List( $default_post_icon );
                 }
 
             endwhile;
-            $output .= "</div><!-- .ppv-listing -->" . "\n";
+            $output .= "</div><!-- .ppv-post-grid -->" . "\n";
             if ( ( function_exists('wp_pagenavi') ) && ( $use_wp_pagenavi === 'YES' ) ) {
                 $output .= wp_pagenavi( array( 'query' => $the_query, 'echo'=>false) );
             } else {

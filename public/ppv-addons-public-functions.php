@@ -94,6 +94,38 @@ function ppv_Archive_List( $default_post_icon ) {
 }
 
 /**
+ * Output post card with image and link to post.
+ *
+ * @since 3.0.3
+ *
+ * @param string  $feature_image
+ * @return string HTML output
+ */
+function ppv_Post_Card( $feature_image ) {
+    ob_start();
+    ?>
+        <div class="ppv-post-card">
+              <div class="ppv-post-link">
+                 <a href="<?php the_permalink() ?>" rel="bookmark" title="Link to <?php the_title_attribute(); ?>"><?php echo $feature_image; ?></a>
+              </div>
+              <div class="ppv-post-title">
+              <a href="<?php the_permalink() ?>" rel="bookmark" title="Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a>
+              </div>
+        </div>
+    <?php
+    $output = ob_get_contents();
+    ob_end_clean();
+    /**
+     * Filter markup to use for display of the image and link to post.
+     *
+     * @since 3.0.3
+     *
+     * @param string HTML output
+     */
+    return apply_filters('ppv_post_card_filter', $output);
+}
+
+/**
  * Alphabetical list end previous letter.
  *
  * @since 1.2.1

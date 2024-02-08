@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 3.0.3 ###
+* Display List posts by date as rows of cards
+
 ### 3.0.2 ###
 * correct git repo ppv-addons.php version
 
