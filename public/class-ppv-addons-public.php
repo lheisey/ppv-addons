@@ -149,6 +149,7 @@ class Ppv_Addons_Public {
     
     /**
      * List posts alphabetically.
+     * Changed to display as rows of cards with version 3.0.5
      *
      * @since 1.2.1
      *
@@ -201,33 +202,34 @@ class Ppv_Addons_Public {
         $curr_letter = '';
         $post_count = 0;
         if ( $the_query->have_posts() ) :
-            $in_this_row = 0;
-            $output = '<div class="ppv-listing ppv-alphabetical">' . "\n";
+            $output = '<div class="ppv-byalpha">' . "\n";
+            
             while ( $the_query->have_posts() ) : $the_query->the_post();
                 $first_letter = strtoupper(substr(apply_filters('the_title',$post->sort_title),0,1));
                 if ($first_letter != $curr_letter) {
                     if (++$post_count > 1) {
-                        $output .= ppv_end_prev_letter();
+                        // finish previous letter
+                        $output .= "</div><!-- .ppv-post-grid -->" . "\n";
+                        $output .= "</div><!-- .ppv-letter-section -->" . "\n";
                     }
-                    $output .= ppv_start_new_letter($first_letter);
-                    $in_this_row = 0;
+
+                    // begin new letter
+                    $output .= '<div class="ppv-letter-section">' . "\n";
+                    $output .= ppv_alphabetical_letter($first_letter);
+                    $output .= '<div class="ppv-post-grid">' . "\n";
                     $curr_letter = $first_letter;
-                }
-               if (++$in_this_row > 1) {
-                    $output .= ppv_end_prev_row();
-                    $output .= ppv_start_new_row();
-                    $in_this_row = 1;
                 }
                 if ( $show_image === 'YES') {
                     $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
-                    $output .= ppv_Media_Object( $feature_image );
+                    $output .= ppv_Post_Card( $feature_image );
                 } else {
                     $output .= ppv_Archive_List( $default_post_icon );
                 }
 
             endwhile;
-            $output .= ppv_end_prev_letter();
-            $output .= "</div><!-- .ppv-listing -->" . "\n";
+            $output .= "</div><!-- .ppv-post-grid -->" . "\n";
+            $output .= "</div><!-- .ppv-byalpha -->" . "\n";
+            // pagination
             if ( ( function_exists('wp_pagenavi') ) && ( $use_wp_pagenavi === 'YES' ) ) {
                 $output .= wp_pagenavi( array( 'query' => $the_query, 'echo'=>false) );
             } else {

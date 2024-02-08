@@ -206,6 +206,27 @@ function ppv_start_new_row() {
 }
 
 /**
+ * Alphabetical list letter.
+ *
+ * @since 3.0.5
+ *
+ * @return string HTML output
+ */
+function ppv_alphabetical_letter( $letter ) {
+    $output = '<div class="ppv-letter-heading">' . "\n";
+    $output .= '<div class="ppv-letter">' . $letter . '</div>' . "\n";
+    $output .= '</div>' . "\n";    
+    /**
+     * Filter markup to use for Alphabetical list letter.
+     *
+     * @since 3.0.5
+     *
+     * @param string HTML output
+     */
+    return apply_filters('ppv_alphabetical_letter_filter', $output);
+}
+
+/**
  * Output pagination.
  *
  * @since 1.0.0

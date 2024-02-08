@@ -1,5 +1,9 @@
 ## Change Log ##
 
+### 3.0.5 ###
+* Display List posts alphabetically as rows of cards
+* Add CSS clear for post lists
+
 ### 3.0.4 ###
 * Display List posts by categories as rows of cards
 

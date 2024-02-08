@@ -228,12 +228,39 @@ $col-grid-max-width: 719px;
   display: table;
 }
 
+/*  Posts listings
+/* ------------------------------------ */
+.ppv-bydate, .ppv-byalpha, .ppv-bycategory {
+  clear: both;
+}
+
 /*  Posts listed by categories
 /* ------------------------------------ */
 .ppv-category-header {
   font-size: 28px;
   letter-spacing: -0.5px;
   margin: 10px 0 4px 0;
+}
+
+/*  Posts listed alphabetically
+/* ------------------------------------ */
+.ppv-byalpha > .ppv-letter-section {
+  padding: 10px 0 4px 0;
+}
+.ppv-byalpha > .ppv-letter-section > .ppv-letter-heading { 
+  border-bottom: 1px solid $primary-dark;
+  margin-bottom: 10px;
+}
+
+.ppv-letter {
+  width: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  padding: 6px;
+  margin: 2px 0 0 0;
+  background: $primary-dark;
+  color: $white;
 }
 
 /*  Post card listings
@@ -250,6 +277,7 @@ $col-grid-max-width: 719px;
   max-width: 120px;
 }
 .ppv-post-grid > .ppv-post-card > .ppv-post-link img {
+  margin: 0;
   max-width: 100%;
 }
 .ppv-post-grid > .ppv-post-card > .ppv-post-link img:hover {
