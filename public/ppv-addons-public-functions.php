@@ -227,6 +227,27 @@ function ppv_alphabetical_letter( $letter ) {
 }
 
 /**
+ * Categories list title.
+ *
+ * @since 3.0.6
+ *
+ * @return string HTML output
+ */
+function ppv_category_title( $category ) {
+    $output = '<div class="ppv-category-heading">' . "\n";
+    $output .= '<div class="ppv-category-title">' . $category . '</div>' . "\n";
+    $output .= '</div>' . "\n";
+    /**
+     * Filter markup to use for Categories list title.
+     *
+     * @since 3.0.6
+     *
+     * @param string HTML output
+     */
+    return apply_filters('ppv_category_title_filter', $output);
+}
+
+/**
  * Output pagination.
  *
  * @since 1.0.0

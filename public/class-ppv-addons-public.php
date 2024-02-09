@@ -297,20 +297,12 @@ class Ppv_Addons_Public {
                   'ignore_sticky_posts' => 1
                   );
                 $the_query = null;
-                $the_query = new WP_Query($args);     
+                $the_query = new WP_Query($args);
                 if ( $the_query->have_posts() ) {
                     $ppv_category = $term->name;
                     $output .= '<div class="ppv-category-section">' . "\n";
-                    /**
-                     * Filter markup for category header.
-                     * Use global $ppv_category to display category
-                     *
-                     * @since 1.0.1
-                     *
-                     * @param string HTML output
-                     */
-                    $output .= apply_filters('ppv_category_header_filter', '<div class="ppv-category-header">' . $ppv_category . '</div>' . "\n");
-                    $output .= '<div class="ppv-post-grid">' . "\n";    
+                    $output .= ppv_category_title($ppv_category);
+                    $output .= '<div class="ppv-post-grid">' . "\n";
                     while ( $the_query->have_posts() ) : $the_query->the_post();
                         if ( $show_image === 'YES') {
                             $feature_image = ppv_get_Feature_Image( $image_size, $default_image );

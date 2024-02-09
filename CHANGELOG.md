@@ -1,5 +1,9 @@
 ## Change Log ##
 
+### 3.0.6 ###
+* Move Categories list title filter to ppv-addons-public-functions.php
+* Change Categories list title formatting to match alphabetical letters
+
 ### 3.0.5 ###
 * Display List posts alphabetically as rows of cards
 * Add CSS clear for post lists

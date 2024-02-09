@@ -236,10 +236,22 @@ $col-grid-max-width: 719px;
 
 /*  Posts listed by categories
 /* ------------------------------------ */
-.ppv-category-header {
-  font-size: 28px;
-  letter-spacing: -0.5px;
-  margin: 10px 0 4px 0;
+.ppv-bycategory > .ppv-category-section {
+  padding: 10px 0 4px 0;
+}
+.ppv-bycategory > .ppv-category-section > .ppv-category-heading { 
+  border-bottom: 1px solid $primary-dark;
+  margin-bottom: 10px;
+}
+.ppv-category-title {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  padding: 6px 10px 6px 10px;
+  margin: 2px 0 0 0;
+  background: $primary-dark;
+  color: $white;
 }
 
 /*  Posts listed alphabetically
@@ -251,7 +263,6 @@ $col-grid-max-width: 719px;
   border-bottom: 1px solid $primary-dark;
   margin-bottom: 10px;
 }
-
 .ppv-letter {
   width: 30px;
   font-size: 20px;
