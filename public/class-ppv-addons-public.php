@@ -97,6 +97,7 @@ class Ppv_Addons_Public {
             'order' => 'DESC',
             'default_image' => 'ppv-default.jpg',
             'default_post_icon' => 'Blog1.png',
+            'title_text' => 'Posts Newest to Oldest',
         ), $atts, 'posts-by-date' );
         
         $posts_per_page = intval( $atts['posts_per_page'] );
@@ -106,6 +107,7 @@ class Ppv_Addons_Public {
         $order = sanitize_key( $atts['order'] );
         $default_image = sanitize_file_name( $atts['default_image'] );
         $default_post_icon = sanitize_file_name( $atts['default_post_icon'] );
+        $title_text = sanitize_text_field( $atts['title_text'] );
         
          // Make options case insensitive
         $show_image = strtoupper($show_image);
@@ -121,7 +123,9 @@ class Ppv_Addons_Public {
         $the_query = new WP_Query( $args );
 
         if ( $the_query->have_posts() ) :
-            $output = '<div class="ppv-post-grid ppv-bydate">' . "\n";
+            $output = '<div class="ppv-bydate">' . "\n";
+            $output .= ppv_bydate_title( $title_text );
+            $output .= '<div class="ppv-post-grid">' . "\n";
             while ( $the_query->have_posts() ) : $the_query->the_post();
                 if ( $show_image === 'YES') {
                     $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
@@ -132,6 +136,7 @@ class Ppv_Addons_Public {
 
             endwhile;
             $output .= "</div><!-- .ppv-post-grid -->" . "\n";
+            $output .= "</div><!-- .ppv-bydate -->" . "\n";
             if ( ( function_exists('wp_pagenavi') ) && ( $use_wp_pagenavi === 'YES' ) ) {
                 $output .= wp_pagenavi( array( 'query' => $the_query, 'echo'=>false) );
             } else {

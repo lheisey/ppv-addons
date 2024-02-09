@@ -16,6 +16,7 @@ Helpful shortcodes for displaying lists of posts on a page. Includes filters to 
     * order [default DESC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     * default_image (default ppv-default.jpg) - Image to display for posts that do not have a feature image set.
     * default_post_icon (default Blog1.png) - Post icon to display when not using show_image.
+    * title_text (default Posts Newest to Oldest) - Title text to display before post list.
 
 * posts-alphabetical - Displays all posts alphabetically. Can show or not show featured images. Output list will be paged and use wp-navi module for pagination if module is active. Shortcode options:
     * posts_per_page [default 24] - Set number of posts per page for paged output.

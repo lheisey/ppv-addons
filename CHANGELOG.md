@@ -1,5 +1,9 @@
 ## Change Log ##
 
+### 3.0.7 ###
+* Add title for List posts by date
+* Add shortcode option for title text
+
 ### 3.0.6 ###
 * Move Categories list title filter to ppv-addons-public-functions.php
 * Change Categories list title formatting to match alphabetical letters

@@ -16,7 +16,7 @@
  * Plugin Name:       Picturesque Photo Views Addons
  * Plugin URI:        https://github.com/lheisey/ppv-addons/
  * Description:       Provides shortcodes and other functions for use in your WordPress theme.
- * Version:           3.0.6
+ * Version:           3.0.7
  * Author:            Loren Heisey
  * Author URI:        https://github.com/lheisey/
  * License:           GPL-2.0+
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'PPV_ADDONS_VERSION', '3.0.6' );
+define( 'PPV_ADDONS_VERSION', '3.0.7' );
 
 /**
  * Setup plugin constants.

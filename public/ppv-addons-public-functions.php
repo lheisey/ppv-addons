@@ -248,6 +248,27 @@ function ppv_category_title( $category ) {
 }
 
 /**
+ * Posts by date list title.
+ *
+ * @since 3.0.7
+ *
+ * @return string HTML output
+ */
+function ppv_bydate_title( $text ) {
+    $output = '<div class="ppv-bydate-heading">' . "\n";
+    $output .= '<div class="ppv-bydate-title">' . $text . '</div>' . "\n";
+    $output .= '</div>' . "\n";
+    /**
+     * Filter markup to use for Posts by date list title.
+     *
+     * @since 3.0.7
+     *
+     * @param string HTML output
+     */
+    return apply_filters('ppv_bydate_title_filter', $output);
+}
+
+/**
  * Output pagination.
  *
  * @since 1.0.0
