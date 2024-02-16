@@ -94,6 +94,31 @@ function ppv_Archive_List( $default_post_icon ) {
 }
 
 /**
+ * Output post list with link to post.
+ * Display in columns without icon with version 3.0.8.
+ *
+ * @since 1.0.0
+ *
+ * @return string HTML output
+ */
+function ppv_Post_List() {
+    ob_start();
+    ?>
+          <li><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></li>
+    <?php
+    $output = ob_get_contents();
+    ob_end_clean();
+    /**
+     * Filter markup to use for display of the link to post.
+     *
+     * @since 1.0.0
+     *
+     * @param string HTML output
+     */
+    return apply_filters('ppv_post_list_filter', $output);
+}
+
+/**
  * Output post card with image and link to post.
  *
  * @since 3.0.3

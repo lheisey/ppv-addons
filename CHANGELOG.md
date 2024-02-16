@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 3.0.8 ###
+* Display post lists in columns for no image option
+
 ### 3.0.7 ###
 * Add title for List posts by date
 * Add shortcode option for title text

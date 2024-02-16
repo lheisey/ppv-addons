@@ -81,6 +81,7 @@ class Ppv_Addons_Public {
     /**
      * List posts by date.
      * Changed to display as rows of cards with version 3.0.3
+     * Changed to display in columns for no image option with version 3.0.8
      *
      * @since 1.0.0
      *
@@ -125,17 +126,28 @@ class Ppv_Addons_Public {
         if ( $the_query->have_posts() ) :
             $output = '<div class="ppv-bydate">' . "\n";
             $output .= ppv_bydate_title( $title_text );
-            $output .= '<div class="ppv-post-grid">' . "\n";
+            if ( $show_image === 'YES') {
+                $output .= '<div class="ppv-post-grid">' . "\n";
+            } else {
+                $output .= '<div class="ppv-post-list">' . "\n";
+                $output .= '<ul class="links">' . "\n";
+            }
             while ( $the_query->have_posts() ) : $the_query->the_post();
                 if ( $show_image === 'YES') {
                     $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
                     $output .= ppv_Post_Card( $feature_image );
                 } else {
-                    $output .= ppv_Archive_List( $default_post_icon );
+                    $output .= ppv_Post_List();
                 }
 
             endwhile;
-            $output .= "</div><!-- .ppv-post-grid -->" . "\n";
+            
+            if ( $show_image === 'YES') {
+                $output .= "</div><!-- .ppv-post-grid -->" . "\n";
+            } else {
+                $output .= '</ul>' . "\n";
+                $output .= '</div><!-- .ppv-post-list -->' . "\n";
+            }
             $output .= "</div><!-- .ppv-bydate -->" . "\n";
             if ( ( function_exists('wp_pagenavi') ) && ( $use_wp_pagenavi === 'YES' ) ) {
                 $output .= wp_pagenavi( array( 'query' => $the_query, 'echo'=>false) );
@@ -155,6 +167,7 @@ class Ppv_Addons_Public {
     /**
      * List posts alphabetically.
      * Changed to display as rows of cards with version 3.0.5
+     * Changed to display in columns for no image option with version 3.0.8
      *
      * @since 1.2.1
      *
@@ -208,31 +221,45 @@ class Ppv_Addons_Public {
         $post_count = 0;
         if ( $the_query->have_posts() ) :
             $output = '<div class="ppv-byalpha">' . "\n";
-            
             while ( $the_query->have_posts() ) : $the_query->the_post();
                 $first_letter = strtoupper(substr(apply_filters('the_title',$post->sort_title),0,1));
                 if ($first_letter != $curr_letter) {
                     if (++$post_count > 1) {
                         // finish previous letter
-                        $output .= "</div><!-- .ppv-post-grid -->" . "\n";
+                        if ( $show_image === 'YES') {
+                            $output .= "</div><!-- .ppv-post-grid -->" . "\n";
+                        } else {
+                            $output .= '</ul>' . "\n";
+                            $output .= '</div><!-- .ppv-post-list -->' . "\n";
+                        }
                         $output .= "</div><!-- .ppv-letter-section -->" . "\n";
                     }
 
                     // begin new letter
                     $output .= '<div class="ppv-letter-section">' . "\n";
                     $output .= ppv_alphabetical_letter($first_letter);
-                    $output .= '<div class="ppv-post-grid">' . "\n";
+                    if ( $show_image === 'YES') {
+                        $output .= '<div class="ppv-post-grid">' . "\n";
+                    } else {
+                        $output .= '<div class="ppv-post-list">' . "\n";
+                        $output .= '<ul class="links">' . "\n";
+                    }
                     $curr_letter = $first_letter;
                 }
                 if ( $show_image === 'YES') {
                     $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
                     $output .= ppv_Post_Card( $feature_image );
                 } else {
-                    $output .= ppv_Archive_List( $default_post_icon );
+                    $output .= ppv_Post_List();
                 }
 
             endwhile;
-            $output .= "</div><!-- .ppv-post-grid -->" . "\n";
+            if ( $show_image === 'YES') {
+                $output .= "</div><!-- .ppv-post-grid -->" . "\n";
+            } else {
+                $output .= '</ul>' . "\n";
+                $output .= '</div><!-- .ppv-post-list -->' . "\n";
+            }
             $output .= "</div><!-- .ppv-byalpha -->" . "\n";
             // pagination
             if ( ( function_exists('wp_pagenavi') ) && ( $use_wp_pagenavi === 'YES' ) ) {
@@ -253,6 +280,7 @@ class Ppv_Addons_Public {
     /**
      * List posts by categories.
      * Changed to display as rows of cards with version 3.0.4
+     * Changed to display in columns for no image option with version 3.0.8
      *
      * @since 1.0.1
      *
@@ -307,17 +335,27 @@ class Ppv_Addons_Public {
                     $ppv_category = $term->name;
                     $output .= '<div class="ppv-category-section">' . "\n";
                     $output .= ppv_category_title($ppv_category);
-                    $output .= '<div class="ppv-post-grid">' . "\n";
+                    if ( $show_image === 'YES') {
+                        $output .= '<div class="ppv-post-grid">' . "\n";
+                    } else {
+                        $output .= '<div class="ppv-post-list">' . "\n";
+                        $output .= '<ul class="links">' . "\n";
+                    }
                     while ( $the_query->have_posts() ) : $the_query->the_post();
                         if ( $show_image === 'YES') {
                             $feature_image = ppv_get_Feature_Image( $image_size, $default_image );
                             $output .= ppv_Post_Card( $feature_image );
                         } else {
-                            $output .= ppv_Archive_List( $default_post_icon );
+                            $output .= ppv_Post_List();
                         }
-
                     endwhile;
-                    $output .= "</div><!-- .ppv-post-grid -->" . "\n";
+
+                    if ( $show_image === 'YES') {
+                        $output .= "</div><!-- .ppv-post-grid -->" . "\n";
+                    } else {
+                        $output .= '</ul>' . "\n";
+                        $output .= '</div><!-- .ppv-post-list -->' . "\n";
+                    }
                     $output .= "</div><!-- .ppv-category-section -->" . "\n";
                 }
             }
