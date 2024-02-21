@@ -68,33 +68,6 @@ function ppv_Media_Object( $feature_image ) {
 
 /**
  * Output post list with link to post.
- *
- * @since 1.0.0
- *
- * @return string HTML output
- */
-function ppv_Archive_List( $default_post_icon ) {
-    ob_start();
-    ?>
-          <div class="ppv-archive-list">
-          <div class="ppv-archive-icon"><img src="<?php echo PPV_ADDONS_PLUGIN_URL ?>public/images/<?php echo $default_post_icon ?>"></div>
-          <div class="ppv-archive-link"><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></div>
-          </div>
-    <?php
-    $output = ob_get_contents();
-    ob_end_clean();
-    /**
-     * Filter markup to use for display of the link to post.
-     *
-     * @since 1.0.0
-     *
-     * @param string HTML output
-     */
-    return apply_filters('ppv_archive_list_filter', $output);
-}
-
-/**
- * Output post list with link to post.
  * Display in columns without icon with version 3.0.8.
  *
  * @since 1.0.0
@@ -148,86 +121,6 @@ function ppv_Post_Card( $feature_image ) {
      * @param string HTML output
      */
     return apply_filters('ppv_post_card_filter', $output);
-}
-
-/**
- * Alphabetical list end previous letter.
- *
- * @since 1.2.1
- *
- * @return string HTML output
- */
-function ppv_end_prev_letter() {
-    $output = ppv_end_prev_row();
-    $output .= "</div><!-- End of letter-group -->\n";
-    $output .= "<div class='ppv-clear'></div>\n";
-    /**
-     * Filter markup to use for Alphabetical list end previous letter.
-     *
-     * @since 1.2.1
-     *
-     * @param string HTML output
-     */
-    return apply_filters('ppv_end_prev_letter_filter', $output);
-}
-
-/**
- * Alphabetical list start new letter.
- *
- * @since 1.2.1
- *
- * @return string HTML output
- */
-function ppv_start_new_letter( $letter ) {
-    $output = "<div class='ppv-letter-group'>\n";
-    $output .= "    <div class='ppv-letter-cell'>" . $letter . "</div>\n";
-    $output .= ppv_start_new_row();
-    /**
-     * Filter markup to use for Alphabetical list start new letter.
-     *
-     * @since 1.2.1
-     *
-     * @param string HTML output
-     */
-    return apply_filters('ppv_start_new_letter_filter', $output);
-}
-
-/**
- * Alphabetical list end previous row.
- *
- * @since 1.2.1
- *
- * @return string HTML output
- */
-function ppv_end_prev_row() {
-    $output = "    </div><!-- End row-cells -->\n";
-    /**
-     * Filter markup to use for Alphabetical list end previous row.
-     *
-     * @since 1.2.1
-     *
-     * @param string HTML output
-     */
-    return apply_filters('ppv_end_prev_row_filter', $output);
-}
-
-/**
- * Alphabetical list start new row.
- *
- * @since 1.2.1
- *
- * @return string HTML output
- */
-function ppv_start_new_row() {
-    $output = "    <div class='ppv-row-cells'>\n";
-    /**
-     * Filter markup to use for Alphabetical list start new letter.
-     *
-     * @since 1.2.1
-     *
-     * @param string HTML output
-     */
-    return apply_filters('ppv_start_new_row_filter', $output);
 }
 
 /**

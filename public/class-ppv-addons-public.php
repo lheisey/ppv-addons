@@ -97,7 +97,6 @@ class Ppv_Addons_Public {
             'use_wp_pagenavi' => 'yes',
             'order' => 'DESC',
             'default_image' => 'ppv-default.jpg',
-            'default_post_icon' => 'Blog1.png',
             'title_text' => 'Posts Newest to Oldest',
         ), $atts, 'posts-by-date' );
         
@@ -107,7 +106,6 @@ class Ppv_Addons_Public {
         $use_wp_pagenavi = sanitize_text_field( $atts['use_wp_pagenavi'] );
         $order = sanitize_key( $atts['order'] );
         $default_image = sanitize_file_name( $atts['default_image'] );
-        $default_post_icon = sanitize_file_name( $atts['default_post_icon'] );
         $title_text = sanitize_text_field( $atts['title_text'] );
         
          // Make options case insensitive
@@ -183,7 +181,6 @@ class Ppv_Addons_Public {
             'use_wp_pagenavi' => 'yes',
             'order' => 'ASC',
             'default_image' => 'ppv-default.jpg',
-            'default_post_icon' => 'Blog1.png',
         ), $atts, 'posts-alphabetical' );
         
         $posts_per_page = intval( $atts['posts_per_page'] );
@@ -192,7 +189,6 @@ class Ppv_Addons_Public {
         $use_wp_pagenavi = sanitize_text_field( $atts['use_wp_pagenavi'] );
         $order = sanitize_key( $atts['order'] );
         $default_image = sanitize_file_name( $atts['default_image'] );
-        $default_post_icon = sanitize_file_name( $atts['default_post_icon'] );
         
          // Make options case insensitive
         $show_image = strtoupper($show_image);
@@ -295,7 +291,6 @@ class Ppv_Addons_Public {
             'orderby' => 'name',
             'order' => 'ASC',
             'default_image' => 'ppv-default.jpg',
-            'default_post_icon' => 'Blog1.png',
         ), $atts, 'posts-by-categories' );
         
         $image_size = sanitize_text_field( $atts['image_size'] );
@@ -303,7 +298,6 @@ class Ppv_Addons_Public {
         $orderby = sanitize_key( $atts['orderby'] );
         $order = sanitize_key( $atts['order'] );
         $default_image = sanitize_file_name( $atts['default_image'] );
-        $default_post_icon = sanitize_file_name( $atts['default_post_icon'] );
         
          // Make options case insensitive
         $show_image = strtoupper($show_image);
@@ -382,12 +376,10 @@ class Ppv_Addons_Public {
         array( 
             'per_page' => 24,
             'order' => 'DESC',
-            'default_tag_icon' => 'Tag1.png',
         ), $atts, 'tags-by-number' );
         
         $per_page = sanitize_text_field( $atts['per_page'] );
         $order = sanitize_key( $atts['order'] );
-        $default_tag_icon = sanitize_file_name( $atts['default_tag_icon'] );
         
         $page = ( get_query_var('paged') ) ? get_query_var( 'paged' ) : 1;
         $offset = ( $page-1 ) * $per_page;
@@ -445,12 +437,10 @@ class Ppv_Addons_Public {
         array( 
             'per_page' => 24,
             'order' => 'ASC',
-            'default_tag_icon' => 'Tag1.png',
         ), $atts, 'tags-alphabetical' );
         
         $per_page = sanitize_text_field( $atts['per_page'] );
         $order = sanitize_key( $atts['order'] );
-        $default_tag_icon = sanitize_file_name( $atts['default_tag_icon'] );
         
         $page = ( get_query_var('paged') ) ? get_query_var( 'paged' ) : 1;
         $offset = ( $page-1 ) * $per_page;

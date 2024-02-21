@@ -23,7 +23,6 @@ Helpful shortcodes for displaying lists of posts on a page. Includes filters to 
     * use_wp_pagenavi [default yes] - Enables not using wp_pagenavi plugin.
     * order [default DESC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     * default_image (default ppv-default.jpg) - Image to display for posts that do not have a feature image set.
-    * default_post_icon (default Blog1.png) - Post icon to display when not using show_image - not used from version 3.0.8.
     * title_text (default Posts Newest to Oldest) - Title text to display before post list.
 
 * posts-alphabetical - Displays all posts alphabetically. Can show or not show featured images. Output list will be paged and use wp-navi module for pagination if module is active. Shortcode options:
@@ -33,7 +32,6 @@ Helpful shortcodes for displaying lists of posts on a page. Includes filters to 
     * use_wp_pagenavi [default yes] - Enables not using wp_pagenavi plugin.
     * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     * default_image (default ppv-default.jpg) - Image to display for posts that do not have a feature image set.
-    * default_post_icon (default Blog1.png) - Post icon to display when not using show_image - not used from version 3.0.8.
 
 * posts-by-categories - Displays all categories and posts in each. Can show or not show featured images. Shortcode options:
     * image_size [default thumbnail] - Set WordPress image size for display of featured image.
@@ -41,17 +39,14 @@ Helpful shortcodes for displaying lists of posts on a page. Includes filters to 
     * orderby [default name] - Sort order to display posts.
     * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
     * default_image (default ppv-default.jpg) - Image to display for posts that do not have a feature image set.
-    * default_post_icon (default Blog1.png) - Post icon to display when not using show_image - not used from version 3.0.8.
 
 * tags-by-number - Displays all tags with count by order of count number. Output list will be paged. Shortcode options:
     * per_page [default 24] - Set number of tags per page for paged output.
     * order [default DESC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
-    * default_tag_icon (default Tag1.png) - Tag icon to display for tag listing - not used from version 3.0.
 
 * tags-alphabetical - Displays all tags with count by alphabetical order. Output list will be paged. Shortcode options:
     * per_page [default 24] - Set number of tags per page for paged output.
     * order [default ASC] - Whether to display posts in ascending (ASC) or descending (DESC) order.
-    * default_tag_icon (default Tag1.png) - Tag icon to display for tag listing - not used from version 3.0.1.
 
 * column - Responsive columns which divides a row into columns. A shortcode is used for each column with the last column (including one-full) containing the option last="true". For screen sizes below a breakpoint the columns become a stacked single column. The breakpoint is defined as 719px by the SASS variable $col-grid-max-width.
 Column size options:
@@ -127,9 +122,9 @@ gulp build | runs default, package
 
 == Frequently Asked Questions ==
 
-= What is the location of default_image, default_post_icon, and default_tag_icon? =
+= What is the location of default_image? =
 
-The image or icon should be placed in the directory wp-content\plugins\ppv-addons\public\images. Set the option in the shortcode to the filename of the image or icon.
+The image should be placed in the directory wp-content\plugins\ppv-addons\public\images. Set the option in the shortcode to the filename of the image.
 
 = Which readme file do I make changes in? =
 
@@ -146,7 +141,6 @@ Only the JS and CSS files I used are enqueued. To use the others uncomment them 
 == Credits ==
 
 * WordPress Plugin Boilerplate https://github.com/DevinVinson/WordPress-Plugin-Boilerplate was used as the starting point for this plugin.
-* Icons from Noun Project have a Creative Commons license. The tag icon is created by Victor Fernandez and the blog icon is created by Luke Jarrett.
 
 == Changelog ==
 

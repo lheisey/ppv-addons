@@ -1,5 +1,8 @@
 ## Change Log ##
 
+### 3.1.0 ###
+* Remove unused code, styling and icons with plugin version 3
+
 ### 3.0.8 ###
 * Display post lists in columns for no image option
 

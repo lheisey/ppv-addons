@@ -45,48 +45,6 @@ $col-grid-max-width: 719px;
   border-color: none;
 }
 
-/*  PPV archive list
-/* ------------------------------------ */
-.ppv-archive-list {
-  margin: 4px 6px 6px 6px;
-  line-height: 1.8em;
-}
-
-.ppv-archive-list a:hover {
-  font-weight: 400;
-}
-
-.ppv-archive-list,
-.ppv-archive-link {
-  overflow: hidden;
-  _overflow: visible;
-  zoom: 1;
-}
-
-.ppv-archive-list .ppv-archive-icon {
-  float: left;
-  margin-right: 10px;
-  height: 30px;
-}
-
-.ppv-archive-list .ppv-archive-icon img {
-  max-height: 100%;
-  max-width: 100%;
-  vertical-align: middle;
-  filter: opacity(40%);
-}
-
-.ppv-list-count {
-  margin-left: 10px;
-  display: inline-block;
-  text-align: center;
-  background-color: $primary-lighter;
-  width: 1.8em;
-  height: 1.8em;
-  /*  line-height: 1.8em; */
-  border-radius: 50%;
-}
-
 /*  PPV pagination
 /* ------------------------------------ */
 .ppv-pagination {
@@ -190,42 +148,6 @@ $col-grid-max-width: 719px;
 .ppv-mediaobj .imgExt {
   float: right;
   margin-left: 10px;
-}
-
-/*  Listing without feature images
-/* ------------------------------------ */
-.ppv-list__body {
-  margin: 0 4px 4px 4px;
-}
-
-/*  Posts listed alphabetically
-/* ------------------------------------ */
-.ppv-letter-group {
-  width: 100%;
-}
-
-.ppv-letter-cell {
-  width: 5%;
-  text-align: center;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  margin-bottom: 8px;
-  border-radius: 4px;
-  background: $primary-dark;
-  color: $white;
-  float: left;
-}
-
-.ppv-row-cells {
-  width: 90%;
-  float: right;
-  margin-right: 10px;
-}
-
-.ppv-clear::after {
-  content: " ";
-  clear: both;
-  display: table;
 }
 
 /*  Posts listings
@@ -517,11 +439,6 @@ margin: 0 0 0 0;
 /*  Print
 /* ------------------------------------ */
 @media print {
-  .ppv-letter-cell { 
-    background: $white; 
-    border: 1px solid #000;
-    color: #000;
-  }
   .ppv-letter {
     background: $white; 
     color: #000;
