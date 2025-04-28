@@ -1,5 +1,9 @@
 ## Change Log ##
 
+### 3.1.1 ###
+* Updated readme tested up to 6.8
+* Updated gulp plugin dependencies
+
 ### 3.1.0 ###
 * Remove unused code, styling and icons with plugin version 3
 
